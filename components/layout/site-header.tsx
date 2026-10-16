@@ -41,7 +41,6 @@ export function SiteHeader() {
             alt="WIN — One stop service for study abroad"
             width={187}
             height={24}
-            priority
             style={{ width: "100%", height: "auto" }}
           />
         </Link>

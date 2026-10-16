@@ -14,7 +14,7 @@ export function HeroSection() {
         src="/assets/home/hero/hero-background.png"
         alt=""
         fill
-        priority
+        preload
         sizes="100vw"
       />
       <div className={styles.overlay} aria-hidden="true" />
@@ -43,7 +43,7 @@ export function HeroSection() {
             src="/assets/home/hero/hero-student.png"
             alt=""
             fill
-            priority
+            fetchPriority="high"
             sizes="(max-width: 767px) 90vw, (max-width: 1100px) 48vw, 495px"
           />
         </div>
