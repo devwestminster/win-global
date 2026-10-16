@@ -2,7 +2,7 @@ import Image from "next/image";
 import localFont from "next/font/local";
 import { siteConfig } from "@/data/site";
 import { ActionLink } from "@/components/ui/action-link";
-import { HeroBackgroundRotator } from "./hero-background-rotator";
+import { HeroBackgroundVideo } from "./hero-background-video";
 import styles from "./hero-section.module.css";
 
 const caveat = localFont({
@@ -16,7 +16,7 @@ export function HeroSection() {
 
   return (
     <section className={styles.hero} aria-labelledby="hero-heading">
-      <HeroBackgroundRotator />
+      <HeroBackgroundVideo />
       <div className={styles.overlay} aria-hidden="true" />
 
       <div className={styles.inner}>

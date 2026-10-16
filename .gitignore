@@ -23,6 +23,9 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
+# Local high-resolution video source (web version lives alongside it)
+/public/assets/home/hero/WIN Flagship for Global.mp4
+
 # OS and editor files
 .DS_Store
 *.swp
