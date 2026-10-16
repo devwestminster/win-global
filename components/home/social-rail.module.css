@@ -1,0 +1,53 @@
+.rail {
+  position: absolute;
+  z-index: 4;
+  top: 317px;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.item {
+  display: grid;
+  width: 52px;
+  height: 52px;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 12px 0 0 12px;
+  background: var(--color-brand-500);
+  color: #fff;
+  transition: width 160ms ease, background-color 160ms ease;
+}
+
+a.item:hover {
+  width: 58px;
+  background: var(--color-brand-700);
+}
+
+.item[aria-disabled="true"] {
+  opacity: 0.72;
+}
+
+.facebookGlyph {
+  font-family: Arial, sans-serif;
+  font-size: 1.55rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+@media (max-width: 767px) {
+  .rail {
+    position: static;
+    flex-direction: row;
+    gap: 8px;
+    margin-top: 4px;
+  }
+
+  .item,
+  a.item:hover {
+    width: 46px;
+    height: 46px;
+    border-radius: 10px;
+  }
+}

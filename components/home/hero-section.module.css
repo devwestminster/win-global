@@ -1,0 +1,207 @@
+.hero {
+  position: relative;
+  min-height: 750px;
+  overflow: hidden;
+  isolation: isolate;
+  background: #fff;
+}
+
+.background {
+  z-index: -3;
+  object-fit: cover;
+  object-position: center bottom;
+}
+
+.overlay {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+  background:
+    linear-gradient(147deg, #fff 24%, rgb(255 255 255 / 0%) 58%),
+    linear-gradient(180deg, #fff 4%, rgb(255 255 255 / 0%) 55%);
+}
+
+.inner {
+  position: relative;
+  display: grid;
+  width: min(100%, 1440px);
+  min-height: 750px;
+  grid-template-columns: minmax(0, 720px) 495px;
+  align-items: end;
+  gap: 25px;
+  margin-inline: auto;
+  padding: 80px var(--page-gutter) 0;
+}
+
+.content {
+  align-self: start;
+  padding-top: 50px;
+}
+
+.content h1 {
+  max-width: 720px;
+  margin: 0;
+  font-size: clamp(3.75rem, 5.8vw, 5.25rem);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+}
+
+.content h1 span,
+.content h1 strong {
+  display: block;
+}
+
+.content h1 strong {
+  color: var(--color-brand-500);
+  font-size: 0.88em;
+  font-weight: inherit;
+  line-height: 1.18;
+}
+
+.content p {
+  max-width: 570px;
+  margin: 20px 0 0;
+  font-size: clamp(1.0625rem, 1.4vw, 1.25rem);
+  line-height: 1.5;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-top: 26px;
+}
+
+.student {
+  position: relative;
+  width: 495px;
+  height: 658px;
+  justify-self: end;
+}
+
+.student img {
+  object-fit: cover;
+  object-position: center bottom;
+}
+
+.mobileSocials {
+  display: none;
+}
+
+@media (max-width: 1100px) {
+  .hero,
+  .inner {
+    min-height: 680px;
+  }
+
+  .inner {
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 43vw);
+    gap: 12px;
+    padding-top: 48px;
+  }
+
+  .content {
+    z-index: 2;
+    padding-top: 44px;
+  }
+
+  .content h1 {
+    font-size: clamp(3rem, 6vw, 4rem);
+  }
+
+  .student {
+    width: min(495px, 46vw);
+    height: min(658px, 61vw);
+  }
+}
+
+@media (max-width: 767px) {
+  .hero {
+    min-height: 0;
+    background: linear-gradient(180deg, #fff 0%, #f5fbff 42%, #d9f3ff 100%);
+  }
+
+  .background {
+    top: auto !important;
+    height: 45% !important;
+    object-position: center bottom;
+    opacity: 0.72;
+  }
+
+  .overlay {
+    background: linear-gradient(180deg, #fff 6%, rgb(255 255 255 / 95%) 48%, rgb(255 255 255 / 0%) 82%);
+  }
+
+  .inner {
+    display: flex;
+    min-height: 0;
+    flex-direction: column;
+    gap: 20px;
+    padding-top: clamp(48px, 12vw, 72px);
+  }
+
+  .content {
+    width: 100%;
+    align-self: auto;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .content h1 {
+    max-width: 620px;
+    font-size: clamp(2.65rem, 11.5vw, 4.5rem);
+    line-height: 1.02;
+  }
+
+  .content h1 strong {
+    margin-top: 4px;
+    font-size: 0.9em;
+  }
+
+  .content p {
+    max-width: 600px;
+    font-size: 1.0625rem;
+  }
+
+  .actions {
+    gap: 12px;
+  }
+
+  .student {
+    width: min(100%, 560px);
+    height: auto;
+    aspect-ratio: 1 / 1;
+    align-self: center;
+  }
+
+  .desktopSocials {
+    display: none;
+  }
+
+  .mobileSocials {
+    display: block;
+    margin-top: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .content h1 {
+    font-size: clamp(2.5rem, 12vw, 3.25rem);
+  }
+
+  .content p {
+    margin-top: 16px;
+    font-size: 1rem;
+  }
+
+  .actions {
+    display: grid;
+    margin-top: 24px;
+  }
+
+  .student {
+    width: calc(100% + 20px);
+    margin-right: -10px;
+  }
+}

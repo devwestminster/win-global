@@ -1,0 +1,248 @@
+.header {
+  position: relative;
+  z-index: 20;
+  width: 100%;
+  background: #fff;
+  border-bottom: 1px solid #edeef2;
+}
+
+.inner {
+  display: flex;
+  width: min(100%, 1440px);
+  min-height: 104px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  margin-inline: auto;
+  padding: 24px var(--page-gutter);
+}
+
+.logo {
+  flex: 0 0 auto;
+  width: 187px;
+}
+
+.logo img {
+  width: 100%;
+  height: auto;
+}
+
+.desktopNav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(18px, 2.22vw, 32px);
+  margin-left: auto;
+}
+
+.navLink,
+.navGroup summary {
+  color: var(--color-brand-600);
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+.navLink {
+  display: inline-flex;
+  min-height: var(--touch-target);
+  align-items: center;
+}
+
+.navLink:hover,
+.navLink[aria-current="page"],
+.navGroup summary:hover {
+  color: var(--color-brand-700);
+}
+
+.navGroup {
+  position: relative;
+}
+
+.navGroup summary {
+  display: flex;
+  min-height: var(--touch-target);
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.navGroup summary::-webkit-details-marker {
+  display: none;
+}
+
+.navGroup summary img {
+  transition: transform 160ms ease;
+}
+
+.navGroup[open] summary img {
+  transform: rotate(180deg);
+}
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;
+  display: grid;
+  width: 220px;
+  padding: 10px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: #fff;
+  box-shadow: var(--shadow-menu);
+  transform: translateX(-50%);
+}
+
+.dropdown a {
+  padding: 10px 12px;
+  border-radius: 8px;
+  color: var(--color-text-primary);
+  font-size: 0.875rem;
+}
+
+.dropdown a:hover {
+  background: #f6f4ff;
+  color: var(--color-brand-700);
+}
+
+.desktopCta {
+  flex: 0 0 auto;
+  margin-left: clamp(8px, 5vw, 85px);
+  white-space: nowrap;
+}
+
+.mobileMenu {
+  display: none;
+}
+
+@media (max-width: 1100px) {
+  .inner {
+    min-height: 88px;
+  }
+
+  .desktopNav,
+  .desktopCta {
+    display: none;
+  }
+
+  .mobileMenu {
+    display: block;
+    margin-left: auto;
+  }
+
+  .mobileMenu > summary {
+    display: inline-flex;
+    min-width: var(--touch-target);
+    min-height: var(--touch-target);
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: var(--color-brand-600);
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .mobileMenu > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .menuLabel {
+    font-weight: 600;
+  }
+
+  .menuIcon,
+  .menuIcon::before,
+  .menuIcon::after {
+    display: block;
+    width: 22px;
+    height: 2px;
+    border-radius: 2px;
+    background: currentColor;
+  }
+
+  .menuIcon {
+    position: relative;
+  }
+
+  .menuIcon::before,
+  .menuIcon::after {
+    position: absolute;
+    left: 0;
+    content: "";
+  }
+
+  .menuIcon::before {
+    top: -7px;
+  }
+
+  .menuIcon::after {
+    top: 7px;
+  }
+
+  .mobilePanel {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    display: grid;
+    gap: 2px;
+    max-height: calc(100vh - 88px);
+    padding: 20px var(--page-gutter) 28px;
+    overflow-y: auto;
+    border-top: 1px solid var(--color-border);
+    background: #fff;
+    box-shadow: var(--shadow-menu);
+  }
+
+  .mobilePanel .navLink,
+  .mobilePanel .navGroup summary {
+    width: 100%;
+    min-height: 48px;
+    justify-content: space-between;
+    font-size: 1rem;
+  }
+
+  .mobilePanel .dropdown {
+    position: static;
+    width: 100%;
+    padding: 0 0 8px 16px;
+    border: 0;
+    box-shadow: none;
+    transform: none;
+  }
+
+  .mobilePanel .dropdown a {
+    min-height: 44px;
+  }
+
+  .mobilePanel > a:last-child {
+    margin-top: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .inner {
+    min-height: 76px;
+    padding-block: 16px;
+  }
+
+  .logo {
+    width: 152px;
+  }
+
+  .menuLabel {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .mobilePanel {
+    max-height: calc(100vh - 76px);
+  }
+}
