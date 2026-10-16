@@ -1,7 +1,13 @@
 export type NavigationItem = {
   label: string;
   href: string;
-  children?: readonly { label: string; href: string }[];
+  children?: readonly NavigationChild[];
+};
+
+export type NavigationChild = {
+  label: string;
+  href: string;
+  external?: boolean;
 };
 
 export const navigation = [
@@ -26,6 +32,11 @@ export const navigation = [
       { label: "Course guidance", href: "/how-we-help/course-guidance" },
       { label: "Applications", href: "/how-we-help/applications" },
       { label: "Visa support", href: "/how-we-help/visa-support" },
+      {
+        label: "Student Accommodation",
+        href: "https://win-ed.studentacco.com/",
+        external: true,
+      },
     ],
   },
   { label: "Scholarships", href: "/scholarships" },

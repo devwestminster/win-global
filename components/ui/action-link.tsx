@@ -6,6 +6,7 @@ type ActionLinkProps = {
   href: string;
   variant?: "primary" | "secondary";
   className?: string;
+  onClick?: React.MouseEventHandler<HTMLAnchorElement>;
 };
 
 export function ActionLink({
@@ -13,11 +14,12 @@ export function ActionLink({
   href,
   variant = "primary",
   className = "",
+  onClick,
 }: ActionLinkProps) {
   const classes = [styles.action, styles[variant], className].filter(Boolean).join(" ");
 
   return (
-    <Link className={classes} href={href}>
+    <Link className={classes} href={href} onClick={onClick}>
       {children}
     </Link>
   );

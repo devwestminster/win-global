@@ -21,7 +21,9 @@ export const metadata: Metadata = {
     template: "%s | WIN Education",
   },
   description: siteConfig.description,
-  icons: { icon: "/assets/brand/win-logo.svg" },
+  icons: {
+    icon: [{ url: "/assets/icons/faviocn.svg", type: "image/svg+xml" }],
+  },
   openGraph: {
     type: "website",
     locale: "en_US",

@@ -1,14 +1,17 @@
 .rail {
-  position: absolute;
-  z-index: 4;
-  top: 317px;
+  position: fixed;
+  z-index: 30;
+  top: 50%;
   right: 0;
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
   gap: 12px;
+  transform: translateY(-50%);
 }
 
 .item {
+  position: relative;
   display: grid;
   width: 52px;
   height: 52px;
@@ -16,17 +19,56 @@
   overflow: hidden;
   border-radius: 12px 0 0 12px;
   background: var(--color-brand-500);
+  box-shadow: 0 8px 20px rgb(32 27 91 / 14%);
   color: #fff;
-  transition: width 160ms ease, background-color 160ms ease;
+  opacity: 0;
+  translate: 100% 0;
+  animation: reveal-social-item 520ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  transition:
+    width 220ms ease,
+    background-color 220ms ease,
+    box-shadow 220ms ease,
+    transform 220ms ease;
 }
 
-a.item:hover {
-  width: 58px;
+.item:nth-child(2) {
+  animation-delay: 90ms;
+}
+
+.item:nth-child(3) {
+  animation-delay: 180ms;
+}
+
+.item:nth-child(4) {
+  animation-delay: 270ms;
+}
+
+.item img,
+.facebookGlyph {
+  position: relative;
+  z-index: 1;
+  transition: transform 220ms ease;
+}
+
+.item::before {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgb(255 255 255 / 20%), transparent 58%);
+  content: "";
+  opacity: 0;
+  transition: opacity 220ms ease;
+}
+
+a.item:focus-visible {
+  width: 62px;
+  outline: 3px solid #fff;
+  outline-offset: -5px;
   background: var(--color-brand-700);
+  box-shadow: 0 12px 28px rgb(32 27 91 / 28%);
 }
 
 .item[aria-disabled="true"] {
-  opacity: 0.72;
+  opacity: 1;
 }
 
 .facebookGlyph {
@@ -36,18 +78,58 @@ a.item:hover {
   line-height: 1;
 }
 
+@media (hover: hover) and (pointer: fine) {
+  .item:hover {
+    width: 62px;
+    background: var(--color-brand-700);
+    box-shadow: 0 12px 28px rgb(32 27 91 / 28%);
+    transform: translateX(-2px) scale(1.04);
+  }
+
+  .item:hover::before {
+    opacity: 1;
+  }
+
+  .item:hover img,
+  .item:hover .facebookGlyph {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes reveal-social-item {
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
 @media (max-width: 767px) {
   .rail {
-    position: static;
-    flex-direction: row;
+    top: auto;
+    bottom: max(12px, env(safe-area-inset-bottom));
     gap: 8px;
-    margin-top: 4px;
+    transform: none;
   }
 
   .item,
-  a.item:hover {
-    width: 46px;
-    height: 46px;
-    border-radius: 10px;
+  a.item:focus-visible {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px 0 0 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .item {
+    opacity: 1;
+    translate: 0 0;
+    animation: none;
+    transition: none;
+  }
+
+  .item img,
+  .facebookGlyph,
+  .item::before {
+    transition: none;
   }
 }
