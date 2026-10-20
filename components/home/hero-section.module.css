@@ -150,6 +150,18 @@
     min-height: calc(100svh - 64px);
   }
 
+  .overlay {
+    background:
+      linear-gradient(
+        180deg,
+        #fff 0%,
+        rgb(255 255 255 / 98%) 46%,
+        rgb(255 255 255 / 68%) 59%,
+        rgb(255 255 255 / 16%) 73%,
+        transparent 86%
+      );
+  }
+
   .inner {
     padding-top: 24px;
     padding-bottom: 24px;
