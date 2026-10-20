@@ -113,7 +113,7 @@
     min-height: 0;
     align-items: stretch;
     padding-top: clamp(32px, 5vw, 48px);
-    padding-bottom: clamp(180px, 30vw, 280px);
+    padding-bottom: clamp(40px, 6vw, 64px);
   }
 
   .content {
@@ -147,11 +147,7 @@
 @media (max-width: 767px) {
   .inner {
     padding-top: 24px;
-    padding-bottom: clamp(150px, 38vw, 220px);
-  }
-
-  .content {
-    padding-top: 0;
+    padding-bottom: 24px;
   }
 
   .content h1 {
