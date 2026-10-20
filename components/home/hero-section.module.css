@@ -145,6 +145,11 @@
 }
 
 @media (max-width: 767px) {
+  .hero,
+  .inner {
+    min-height: calc(100svh - 64px);
+  }
+
   .inner {
     padding-top: 24px;
     padding-bottom: 24px;
