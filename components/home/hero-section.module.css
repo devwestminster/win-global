@@ -32,12 +32,10 @@
 
 .inner {
   position: relative;
-  display: grid;
+  display: flex;
   width: min(100%, 1440px);
   min-height: 750px;
-  grid-template-columns: minmax(0, 720px) 495px;
-  align-items: end;
-  gap: 25px;
+  align-items: flex-end;
   margin-inline: auto;
   padding: 80px var(--page-gutter) 0;
 }
@@ -89,18 +87,6 @@
   margin-top: 32px;
 }
 
-.student {
-  position: relative;
-  width: 495px;
-  height: 658px;
-  justify-self: end;
-}
-
-.student img {
-  object-fit: cover;
-  object-position: center bottom;
-}
-
 @media (max-width: 1100px) {
   .hero {
     min-height: 0;
@@ -124,11 +110,10 @@
   }
 
   .inner {
-    display: flex;
     min-height: 0;
-    flex-direction: column;
-    gap: 24px;
+    align-items: stretch;
     padding-top: clamp(32px, 5vw, 48px);
+    padding-bottom: clamp(180px, 30vw, 280px);
   }
 
   .content {
@@ -141,13 +126,6 @@
   .content h1 {
     max-width: 746px;
     font-size: clamp(3rem, 6vw, 4rem);
-  }
-
-  .student {
-    width: min(100%, 560px);
-    height: auto;
-    aspect-ratio: 1 / 1;
-    align-self: center;
   }
 }
 
@@ -168,8 +146,8 @@
 
 @media (max-width: 767px) {
   .inner {
-    gap: 20px;
     padding-top: 24px;
+    padding-bottom: clamp(150px, 38vw, 220px);
   }
 
   .content {
@@ -195,7 +173,6 @@
   .actions {
     gap: 12px;
   }
-
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -248,10 +225,5 @@
   .actions {
     display: grid;
     margin-top: 24px;
-  }
-
-  .student {
-    width: calc(100% + 20px);
-    margin-right: -10px;
   }
 }

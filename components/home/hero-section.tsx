@@ -1,4 +1,3 @@
-import Image from "next/image";
 import localFont from "next/font/local";
 import { siteConfig } from "@/data/site";
 import { ActionLink } from "@/components/ui/action-link";
@@ -35,17 +34,6 @@ export function HeroSection() {
             <ActionLink href={siteConfig.consultationPath}>Book a free consultation</ActionLink>
             <ActionLink href={whatsappHref} variant="secondary">Chat on WhatsApp</ActionLink>
           </div>
-        </div>
-
-        <div className={styles.student} aria-hidden="true">
-          <Image
-            src="/assets/home/hero/hero-student.png"
-            alt=""
-            fill
-            fetchPriority="high"
-            loading="eager"
-            sizes="(max-width: 767px) 90vw, (max-width: 1100px) 48vw, 495px"
-          />
         </div>
       </div>
     </section>
