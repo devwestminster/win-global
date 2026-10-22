@@ -5,29 +5,12 @@
 
 .hero {
   position: relative;
-  isolation: isolate;
   display: grid;
   min-height: max(560px, calc(100svh - 66px));
   place-items: center;
   overflow: hidden;
   padding: clamp(80px, 9vw, 132px) var(--page-gutter);
-  background:
-    linear-gradient(180deg, rgb(250 251 254 / 76%), #fff),
-    radial-gradient(circle at 82% 18%, rgb(37 180 233 / 14%), transparent 36%);
-}
-
-.glow {
-  position: absolute;
-  z-index: -1;
-  top: 8%;
-  left: 50%;
-  width: min(68vw, 900px);
-  aspect-ratio: 1.8;
-  border-radius: 50%;
-  background: rgb(74 64 154 / 8%);
-  filter: blur(90px);
-  transform: translateX(-50%);
-  pointer-events: none;
+  background: linear-gradient(180deg, var(--color-surface) 0%, var(--color-surface-sky) 100%);
 }
 
 .inner {

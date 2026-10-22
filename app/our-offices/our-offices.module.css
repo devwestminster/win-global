@@ -3,7 +3,7 @@
   min-height: 660px;
   place-items: center;
   padding: clamp(80px, 7vw, 100px) var(--page-gutter);
-  background: linear-gradient(180deg, #fff 0%, #f3f1ff 100%);
+  background: linear-gradient(180deg, var(--color-surface) 0%, var(--color-surface-sky) 100%);
 }
 
 .heroInner {
@@ -47,7 +47,7 @@
 
 .officeSection {
   padding: 0 var(--page-gutter) clamp(88px, 8.35vw, 120px);
-  background: linear-gradient(180deg, #f3f1ff 0%, #fff 100%);
+  background: linear-gradient(180deg, var(--color-surface-sky) 0%, var(--color-surface) 100%);
 }
 
 .visuallyHidden {

@@ -15,7 +15,6 @@ export function ContentPageShell({
   return (
     <main className={styles.page}>
       <section className={styles.hero} aria-labelledby="page-title">
-        <div className={styles.glow} aria-hidden="true" />
         <div className={styles.inner}>
           <p className={styles.eyebrow}>{eyebrow}</p>
           <h1 className={styles.title} id="page-title">
