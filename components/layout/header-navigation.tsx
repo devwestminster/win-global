@@ -1,8 +1,9 @@
 "use client";
 
 import type { KeyboardEvent } from "react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   navigation,
   siteConfig,
@@ -13,13 +14,28 @@ import { ActionLink } from "@/components/ui/action-link";
 import styles from "./site-header.module.css";
 
 const navigationItems: readonly NavigationItem[] = navigation;
+const subscribeToHydration = () => () => undefined;
+const getClientHydrationSnapshot = () => true;
+const getServerHydrationSnapshot = () => false;
 
-function DirectLink({ item, onNavigate }: { item: NavigationItem; onNavigate?: () => void }) {
+function isPathActive(pathname: string, href: string) {
+  return href === "/" ? pathname === href : pathname === href || pathname.startsWith(`${href}/`);
+}
+
+function DirectLink({
+  item,
+  pathname,
+  onNavigate,
+}: {
+  item: NavigationItem;
+  pathname: string;
+  onNavigate?: () => void;
+}) {
   return (
     <Link
       className={styles.navLink}
       href={item.href}
-      aria-current={item.href === "/" ? "page" : undefined}
+      aria-current={isPathActive(pathname, item.href) ? "page" : undefined}
       onClick={onNavigate}
     >
       {item.label}
@@ -27,7 +43,15 @@ function DirectLink({ item, onNavigate }: { item: NavigationItem; onNavigate?: (
   );
 }
 
-function ChildLink({ child, onNavigate }: { child: NavigationChild; onNavigate: () => void }) {
+function ChildLink({
+  child,
+  pathname,
+  onNavigate,
+}: {
+  child: NavigationChild;
+  pathname: string;
+  onNavigate: () => void;
+}) {
   if (child.external) {
     return (
       <a
@@ -43,13 +67,24 @@ function ChildLink({ child, onNavigate }: { child: NavigationChild; onNavigate: 
   }
 
   return (
-    <Link href={child.href} onClick={onNavigate}>
+    <Link
+      href={child.href}
+      aria-current={pathname === child.href ? "page" : undefined}
+      onClick={onNavigate}
+    >
       {child.label}
     </Link>
   );
 }
 
 export function HeaderNavigation() {
+  const pathname = usePathname();
+  const hydrated = useSyncExternalStore(
+    subscribeToHydration,
+    getClientHydrationSnapshot,
+    getServerHydrationSnapshot,
+  );
+  const activePathname = hydrated ? pathname : "";
   const [desktopMenu, setDesktopMenu] = useState<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileSubmenu, setMobileSubmenu] = useState<string | null>(null);
@@ -143,7 +178,9 @@ export function HeaderNavigation() {
     <div className={styles.navigationShell} ref={rootRef}>
       <nav className={styles.desktopNav} aria-label="Primary navigation">
         {navigationItems.map((item) => {
-          if (!item.children?.length) return <DirectLink item={item} key={item.href} />;
+          if (!item.children?.length) {
+            return <DirectLink item={item} pathname={activePathname} key={item.href} />;
+          }
 
           const menuId = `desktop-menu-${item.href.replaceAll("/", "-")}`;
           const isOpen = desktopMenu === item.href;
@@ -154,6 +191,7 @@ export function HeaderNavigation() {
                 type="button"
                 aria-controls={menuId}
                 aria-expanded={isOpen}
+                data-current={isPathActive(activePathname, item.href) || undefined}
                 onClick={(event) => {
                   desktopTriggerRef.current = event.currentTarget;
                   setDesktopMenu(isOpen ? null : item.href);
@@ -169,6 +207,7 @@ export function HeaderNavigation() {
                     <ChildLink
                       child={child}
                       key={child.href}
+                      pathname={activePathname}
                       onNavigate={() => setDesktopMenu(null)}
                     />
                   ))}
@@ -230,7 +269,11 @@ export function HeaderNavigation() {
                 if (!item.children?.length) {
                   return (
                     <div className={styles.mobileNavRow} key={item.href}>
-                      <DirectLink item={item} onNavigate={closeMobileMenu} />
+                      <DirectLink
+                        item={item}
+                        pathname={activePathname}
+                        onNavigate={closeMobileMenu}
+                      />
                     </div>
                   );
                 }
@@ -245,6 +288,7 @@ export function HeaderNavigation() {
                       type="button"
                       aria-controls={submenuId}
                       aria-expanded={isOpen}
+                      data-current={isPathActive(activePathname, item.href) || undefined}
                       onClick={() => setMobileSubmenu(isOpen ? null : item.href)}
                     >
                       <span>{item.label}</span>
@@ -257,6 +301,7 @@ export function HeaderNavigation() {
                           <ChildLink
                             child={child}
                             key={child.href}
+                            pathname={activePathname}
                             onNavigate={closeMobileMenu}
                           />
                         ))}

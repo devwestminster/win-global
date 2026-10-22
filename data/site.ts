@@ -16,6 +16,7 @@ export const navigation = [
     label: "Study Abroad",
     href: "/study-abroad",
     children: [
+      { label: "Study Abroad overview", href: "/study-abroad" },
       { label: "United Kingdom", href: "/study-abroad/united-kingdom" },
       { label: "Australia", href: "/study-abroad/australia" },
       { label: "USA", href: "/study-abroad/usa" },
@@ -29,6 +30,7 @@ export const navigation = [
     label: "How We Help",
     href: "/how-we-help",
     children: [
+      { label: "How We Help overview", href: "/how-we-help" },
       { label: "Course guidance", href: "/how-we-help/course-guidance" },
       { label: "Applications", href: "/how-we-help/applications" },
       { label: "Visa support", href: "/how-we-help/visa-support" },

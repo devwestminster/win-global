@@ -61,7 +61,8 @@
 .navLink:hover,
 .navLink[aria-current="page"],
 .navGroup > button:hover,
-.navGroup > button[aria-expanded="true"] {
+.navGroup > button[aria-expanded="true"],
+.navGroup > button[data-current="true"] {
   color: var(--color-brand-700);
 }
 
@@ -118,7 +119,8 @@ button[aria-expanded="true"] > .chevron {
 }
 
 .dropdown a:hover,
-.dropdown a:focus-visible {
+.dropdown a:focus-visible,
+.dropdown a[aria-current="page"] {
   background: #f6f4ff;
   color: var(--color-brand-700);
 }
@@ -304,7 +306,8 @@ button[aria-expanded="true"] > .chevron {
   }
 
   .mobileNavRow > .navLink[aria-current="page"],
-  .mobileAccordionButton[aria-expanded="true"] {
+  .mobileAccordionButton[aria-expanded="true"],
+  .mobileAccordionButton[data-current="true"] {
     color: var(--color-brand-700);
   }
 
@@ -322,6 +325,11 @@ button[aria-expanded="true"] > .chevron {
     color: var(--color-text-secondary);
     font-size: 0.975rem;
     text-align: center;
+  }
+
+  .mobileSubmenu a[aria-current="page"] {
+    background: #f6f4ff;
+    color: var(--color-brand-700);
   }
 
   .mobileSubmenu a:hover,
