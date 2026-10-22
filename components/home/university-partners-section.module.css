@@ -32,6 +32,7 @@
 .tabScroller {
   overflow-x: auto;
   overscroll-behavior-inline: contain;
+  scroll-snap-type: inline proximity;
   scrollbar-width: thin;
 }
 
@@ -45,6 +46,7 @@
 }
 
 .tab {
+  scroll-snap-align: center;
   min-height: 56px;
   padding: 12px 36px;
   border: 1px solid var(--color-brand-600);
@@ -133,33 +135,47 @@
 
 .logoCard img {
   width: min(100%, 180px);
-  height: 104px;
+  height: auto;
+  max-height: 104px;
   object-fit: contain;
 }
 
 .toggle {
-  position: relative;
   display: grid;
   width: 64px;
   height: 64px;
   place-items: center;
   margin: 20px auto 0;
   padding: 0;
-  border: 0;
-  background: transparent;
+  border: 1px solid var(--color-brand-500);
+  border-radius: var(--radius-full);
+  background: #fff;
+  box-shadow: 0 8px 20px rgb(11 34 80 / 8%);
+  color: var(--color-brand-500);
   cursor: pointer;
+  transition: background-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.toggle:hover {
+  background: #f6f4ff;
+  box-shadow: 0 10px 24px rgb(11 34 80 / 12%);
+}
+
+.toggle:active {
+  transform: translateY(1px);
 }
 
 .toggleIcon {
-  width: 106px;
-  height: 106px;
-  max-width: none;
-  transform: rotate(90deg);
+  width: 18px;
+  height: 18px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: translateY(-4px) rotate(45deg);
   transition: transform 200ms ease;
 }
 
 .expandedIcon {
-  transform: rotate(-90deg);
+  transform: translateY(4px) rotate(225deg);
 }
 
 @keyframes logo-card-reveal {
@@ -293,7 +309,8 @@
 
   .logoCard img {
     width: min(100%, 142px);
-    height: 78px;
+    height: auto;
+    max-height: 78px;
   }
 
   .toggle {
@@ -312,6 +329,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .tab,
+  .toggle,
   .toggleIcon {
     transition: none;
   }

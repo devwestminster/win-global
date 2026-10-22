@@ -24,6 +24,7 @@ export function UniversityPartnerTabs() {
   );
   const [isExpanded, setIsExpanded] = useState(false);
   const [isCollapsing, setIsCollapsing] = useState(false);
+  const tabScrollerRef = useRef<HTMLDivElement>(null);
   const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const panelId = useId();
   const activeCountry =
@@ -44,10 +45,26 @@ export function UniversityPartnerTabs() {
     .filter(Boolean)
     .join(" ");
 
-  function selectCountry(id: (typeof universityCountries)[number]["id"]) {
+  function scrollTabIntoView(index: number) {
+    const scroller = tabScrollerRef.current;
+    const tab = tabRefs.current[index];
+
+    if (!scroller || !tab || scroller.scrollWidth <= scroller.clientWidth) return;
+
+    const centeredPosition = tab.offsetLeft - (scroller.clientWidth - tab.offsetWidth) / 2;
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    scroller.scrollTo({
+      left: centeredPosition,
+      behavior: prefersReducedMotion ? "auto" : "smooth",
+    });
+  }
+
+  function selectCountry(id: (typeof universityCountries)[number]["id"], index: number) {
     setActiveCountryId(id);
     setIsExpanded(false);
     setIsCollapsing(false);
+    scrollTabIntoView(index);
   }
 
   function toggleLogos() {
@@ -79,13 +96,13 @@ export function UniversityPartnerTabs() {
 
     event.preventDefault();
     const nextCountry = universityCountries[nextIndex];
-    selectCountry(nextCountry.id);
+    selectCountry(nextCountry.id, nextIndex);
     tabRefs.current[nextIndex]?.focus();
   }
 
   return (
     <div className={styles.explorer}>
-      <div className={styles.tabScroller}>
+      <div className={styles.tabScroller} ref={tabScrollerRef}>
         <div className={styles.tabs} role="tablist" aria-label="University partners by country">
           {universityCountries.map((country, index) => {
             const isActive = country.id === activeCountry.id;
@@ -103,7 +120,7 @@ export function UniversityPartnerTabs() {
                 aria-controls={panelId}
                 aria-selected={isActive}
                 tabIndex={isActive ? 0 : -1}
-                onClick={() => selectCountry(country.id)}
+                onClick={() => selectCountry(country.id, index)}
                 onKeyDown={(event) => handleTabKeyDown(event, index)}
               >
                 {country.label}
@@ -155,12 +172,9 @@ export function UniversityPartnerTabs() {
               aria-label={isExpanded ? "Show fewer university logos" : "Show all university logos"}
               onClick={toggleLogos}
             >
-              <Image
+              <span
                 className={`${styles.toggleIcon} ${isExpanded ? styles.expandedIcon : ""}`}
-                src="/assets/home/universities/expand-chevron.svg"
-                alt=""
-                width={106}
-                height={106}
+                aria-hidden="true"
               />
             </button>
           </>
