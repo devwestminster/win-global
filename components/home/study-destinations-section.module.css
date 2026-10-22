@@ -1,0 +1,332 @@
+.section {
+  position: relative;
+  padding: clamp(72px, 7vw, 100px) var(--page-gutter) clamp(80px, 8vw, 120px);
+  background: var(--color-surface);
+}
+
+.content {
+  width: min(100%, var(--content-max));
+  margin-inline: auto;
+}
+
+.heading {
+  display: grid;
+  gap: 12px;
+  text-align: center;
+}
+
+.eyebrow,
+.intro,
+.heading h2,
+.cardEyebrow,
+.cardDescription,
+.card h3 {
+  margin: 0;
+}
+
+.eyebrow,
+.cardEyebrow {
+  color: var(--color-brand-500);
+  font-size: clamp(1rem, 1.67vw, 1.5rem);
+  letter-spacing: 0.125em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.heading h2 {
+  display: grid;
+  color: var(--color-text-primary);
+  font-size: clamp(2.5rem, 4.45vw, 4rem);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+.heading h2 span {
+  color: var(--color-brand-500);
+}
+
+.intro {
+  max-width: 1020px;
+  margin: 20px auto 0;
+  color: var(--color-text-secondary);
+  font-size: clamp(1.125rem, 1.67vw, 1.5rem);
+  line-height: 1.5;
+  text-wrap: balance;
+}
+
+.countryNav {
+  max-width: 100%;
+  margin-top: 36px;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scrollbar-width: none;
+}
+
+.countryNav::-webkit-scrollbar,
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.countryList {
+  display: flex;
+  width: max-content;
+  min-width: 100%;
+  justify-content: center;
+  gap: 10px;
+  padding: 4px;
+}
+
+.countryButton {
+  min-height: 48px;
+  padding: 11px 20px;
+  border: 1px solid #d8d5ec;
+  border-radius: var(--radius-full);
+  background: #fff;
+  color: var(--color-brand-600);
+  cursor: pointer;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  transition: border-color 160ms ease, background-color 160ms ease, color 160ms ease,
+    transform 160ms ease;
+}
+
+.countryButton:hover {
+  border-color: var(--color-brand-500);
+  background: #f7f5ff;
+  transform: translateY(-1px);
+}
+
+.countryButton[aria-pressed="true"] {
+  border-color: var(--color-brand-500);
+  background: var(--color-brand-500);
+  color: #fff;
+}
+
+.carousel {
+  --carousel-gap: clamp(16px, 2vw, 28px);
+  --carousel-peek: clamp(48px, 6.7vw, 96px);
+
+  display: flex;
+  gap: var(--carousel-gap);
+  margin: 36px 0 0;
+  padding: 0;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-snap-type: inline mandatory;
+  scrollbar-width: none;
+  list-style: none;
+}
+
+.slide {
+  flex: 0 0 calc(100% - var(--carousel-peek));
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+.card {
+  position: relative;
+  height: clamp(600px, 52.8vw, 760px);
+  overflow: hidden;
+  border: 1px solid #e0e0e0;
+  border-radius: clamp(32px, 4.45vw, 64px);
+  background: #f4f3f8;
+  box-shadow: 0 20px 56px rgb(23 24 41 / 8%);
+}
+
+.cardImage {
+  object-fit: cover;
+}
+
+.ukImage,
+.australiaImage {
+  object-position: center bottom;
+}
+
+.usaImage {
+  object-position: center 68%;
+}
+
+.singaporeImage {
+  object-position: center 58%;
+}
+
+.newZealandImage,
+.malaysiaImage,
+.canadaImage {
+  object-position: center 62%;
+}
+
+.cardShade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, #fff 3%, rgb(255 255 255 / 96%) 27%, rgb(255 255 255 / 72%) 45%, transparent 68%);
+  pointer-events: none;
+}
+
+.cardContent {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  justify-items: center;
+  width: min(100%, 1040px);
+  margin-inline: auto;
+  padding: clamp(52px, 6.95vw, 100px) clamp(24px, 8.34vw, 120px) 40px;
+  text-align: center;
+}
+
+.card h3 {
+  margin-top: 12px;
+  color: var(--color-text-primary);
+  font-size: clamp(3rem, 4.45vw, 4rem);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.1;
+}
+
+.cardDescription {
+  max-width: 990px;
+  margin-top: 20px;
+  color: var(--color-text-secondary);
+  font-size: clamp(1.125rem, 1.67vw, 1.5rem);
+  line-height: 1.5;
+  text-wrap: balance;
+}
+
+.highlights {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin: 22px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.highlights li {
+  padding: 8px 14px;
+  border: 1px solid rgb(74 64 154 / 18%);
+  border-radius: var(--radius-full);
+  background: rgb(255 255 255 / 72%);
+  color: var(--color-brand-700);
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.2;
+  backdrop-filter: blur(8px);
+}
+
+.cardContent > a {
+  margin-top: 28px;
+}
+
+@media (max-width: 1100px) {
+  .card {
+    height: clamp(560px, 65vw, 680px);
+  }
+
+  .cardContent {
+    width: min(100%, 860px);
+  }
+}
+
+@media (max-width: 767px) {
+  .section {
+    padding-top: 64px;
+    padding-bottom: 80px;
+  }
+
+  .heading {
+    gap: 10px;
+  }
+
+  .heading h2 {
+    font-size: clamp(2.25rem, 10.25vw, 3rem);
+    line-height: 1.12;
+  }
+
+  .intro {
+    margin-top: 14px;
+    font-size: 1.0625rem;
+  }
+
+  .countryNav {
+    margin: 28px -20px 0;
+    padding-inline: 20px;
+    scroll-padding-inline: 20px;
+  }
+
+  .countryList {
+    min-width: max-content;
+    justify-content: flex-start;
+  }
+
+  .carousel {
+    --carousel-gap: 12px;
+    --carousel-peek: 36px;
+
+    margin-top: 28px;
+  }
+
+  .card {
+    height: clamp(500px, 138vw, 560px);
+    border-radius: 32px;
+    box-shadow: 0 14px 36px rgb(23 24 41 / 10%);
+  }
+
+  .cardShade {
+    background: linear-gradient(to bottom, #fff 2%, rgb(255 255 255 / 97%) 35%, rgb(255 255 255 / 78%) 57%, transparent 82%);
+  }
+
+  .cardContent {
+    padding: 40px 18px 28px;
+  }
+
+  .card h3 {
+    margin-top: 10px;
+    font-size: clamp(2.5rem, 12.3vw, 3.25rem);
+  }
+
+  .cardDescription {
+    margin-top: 16px;
+    font-size: 1.0625rem;
+    line-height: 1.45;
+  }
+
+  .highlights {
+    gap: 6px;
+    margin-top: 18px;
+  }
+
+  .highlights li {
+    padding: 7px 11px;
+    font-size: 0.8125rem;
+  }
+
+  .cardContent > a {
+    width: auto;
+    margin-top: 22px;
+  }
+}
+
+@media (max-width: 390px) {
+  .card {
+    height: 540px;
+  }
+
+  .cardContent {
+    padding-inline: 16px;
+  }
+
+  .cardContent > a {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .countryButton {
+    transition: none;
+  }
+}

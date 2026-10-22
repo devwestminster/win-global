@@ -40,6 +40,7 @@ export const navigation = [
     ],
   },
   { label: "Scholarships", href: "/scholarships" },
+  { label: "Our Offices", href: "/our-offices" },
   { label: "Blog", href: "/blog" },
 ] as const satisfies readonly NavigationItem[];
 
