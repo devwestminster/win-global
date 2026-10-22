@@ -42,7 +42,7 @@ export function SiteFooter() {
           <div className={styles.ctaCopy}>
             <div>
               <h2 className={styles.ctaTitle} id="footer-cta-title">
-                Your study-abroad plan
+                Your study abroad plan
                 <span>starts with one chat.</span>
               </h2>
               <p className={styles.ctaDescription}>
