@@ -133,11 +133,11 @@
   transform: translateY(-8px) scale(0.985);
 }
 
-.logoCard img {
+.logoMedia {
+  position: relative;
+  display: block;
   width: min(100%, 180px);
-  height: auto;
-  max-height: 104px;
-  object-fit: contain;
+  height: 104px;
 }
 
 .toggle {
@@ -307,10 +307,9 @@
     padding: 16px 12px;
   }
 
-  .logoCard img {
-    width: min(100%, 142px);
-    height: auto;
-    max-height: 78px;
+  .logoMedia {
+    width: min(100%, 135px);
+    height: 78px;
   }
 
   .toggle {

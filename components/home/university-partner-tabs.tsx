@@ -153,13 +153,16 @@ export function UniversityPartnerTabs() {
                   key={logo.name}
                   style={{ "--logo-delay": `${(index % 8) * 22}ms` } as CSSProperties}
                 >
-                  <Image
-                    src={logo.src}
-                    alt={logo.name}
-                    width={180}
-                    height={104}
-                    sizes="(max-width: 650px) 38vw, (max-width: 1024px) 25vw, 180px"
-                  />
+                  <span className={styles.logoMedia}>
+                    <Image
+                      src={logo.src}
+                      alt={logo.name}
+                      width={180}
+                      height={104}
+                      style={{ width: "100%", height: "100%", objectFit: "contain" }}
+                      sizes="(max-width: 650px) 135px, 180px"
+                    />
+                  </span>
                 </li>
               ))}
             </ul>

@@ -1,0 +1,28 @@
+.heroUniversityStack {
+  position: relative;
+  isolation: isolate;
+}
+
+.heroLayer {
+  position: sticky;
+  z-index: 0;
+  top: 0;
+}
+
+.universityLayer {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+  background: var(--color-surface);
+  box-shadow: 0 -24px 72px rgb(29 35 80 / 8%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heroLayer {
+    position: relative;
+  }
+
+  .universityLayer {
+    box-shadow: none;
+  }
+}
