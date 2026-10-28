@@ -127,12 +127,12 @@ const usaLogos = createLogoList("usa", usaUniversities);
 const newZealandLogos = createLogoList("new-zealand", newZealandUniversities);
 
 export const universityCountries = [
-  { id: "uk", label: "UK", logos: ukLogos },
+  { id: "uk", label: "United Kingdom", logos: ukLogos },
   { id: "australia", label: "Australia", logos: australianLogos },
   { id: "usa", label: "USA", logos: usaLogos },
   { id: "singapore", label: "Singapore", logos: [] },
-  { id: "malaysia", label: "Malaysia", logos: [] },
   { id: "new-zealand", label: "New Zealand", logos: newZealandLogos },
+  { id: "malaysia", label: "Malaysia", logos: [] },
   { id: "canada", label: "Canada", logos: [] },
 ] as const;
 

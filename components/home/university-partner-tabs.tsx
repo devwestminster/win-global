@@ -12,10 +12,16 @@ import {
 import { type UniversityCountry, universityCountries } from "@/data/universities";
 import styles from "./university-partners-section.module.css";
 
-function calculateGridHeight(itemCount: number, columns: number, cardHeight: number, gap: number) {
+function calculateGridHeight(
+  itemCount: number,
+  columns: number,
+  cardHeight: number,
+  gap: number,
+  topPadding: number,
+) {
   const rows = Math.ceil(itemCount / columns);
 
-  return rows > 0 ? rows * cardHeight + (rows - 1) * gap : 0;
+  return rows > 0 ? topPadding + rows * cardHeight + (rows - 1) * gap : 0;
 }
 
 export function UniversityPartnerTabs() {
@@ -32,9 +38,9 @@ export function UniversityPartnerTabs() {
   const hasLogos = activeCountry.logos.length > 0;
   const showAllLogos = isExpanded || isCollapsing;
   const gridStyle = {
-    "--expanded-height-desktop": `${calculateGridHeight(activeCountry.logos.length, 4, 152, 32)}px`,
-    "--expanded-height-tablet": `${calculateGridHeight(activeCountry.logos.length, 3, 152, 20)}px`,
-    "--expanded-height-mobile": `${calculateGridHeight(activeCountry.logos.length, 2, 116, 12)}px`,
+    "--expanded-height-desktop": `${calculateGridHeight(activeCountry.logos.length, 4, 151.5, 32, 24)}px`,
+    "--expanded-height-tablet": `${calculateGridHeight(activeCountry.logos.length, 3, 132, 20, 20)}px`,
+    "--expanded-height-mobile": `${calculateGridHeight(activeCountry.logos.length, 2, 108, 12, 16)}px`,
   } as CSSProperties;
   const toggleClassName = [
     styles.toggle,
@@ -175,9 +181,12 @@ export function UniversityPartnerTabs() {
               aria-label={isExpanded ? "Show fewer university logos" : "Show all university logos"}
               onClick={toggleLogos}
             >
-              <span
-                className={`${styles.toggleIcon} ${isExpanded ? styles.expandedIcon : ""}`}
-                aria-hidden="true"
+              <Image
+                className={`${styles.toggleAsset} ${isExpanded ? styles.expandedAsset : ""}`}
+                src="/assets/home/universities/show-more.svg"
+                alt=""
+                width={106}
+                height={106}
               />
             </button>
           </>

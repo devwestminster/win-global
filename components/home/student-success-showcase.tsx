@@ -52,12 +52,6 @@ const slides = [
   },
 ] as const;
 
-const stats = [
-  { value: 15, suffix: "+", label: "Years guiding students abroad" },
-  { value: 200, suffix: "+", label: "Official university partners" },
-  { value: 7, suffix: "", label: "Study destinations worldwide" },
-] as const;
-
 function wrapSlide(index: number) {
   return (index + slides.length) % slides.length;
 }
@@ -67,8 +61,6 @@ export function StudentSuccessShowcase() {
   const [hasFocus, setHasFocus] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [interactionEpoch, setInteractionEpoch] = useState(0);
-  const [counts, setCounts] = useState<readonly number[]>(stats.map(() => 0));
-  const rootRef = useRef<HTMLDivElement>(null);
   const pointerStartX = useRef<number | null>(null);
   const isPaused = hasFocus || isHovered;
 
@@ -87,46 +79,6 @@ export function StudentSuccessShowcase() {
 
     return () => window.clearInterval(interval);
   }, [interactionEpoch, isPaused]);
-
-  useEffect(() => {
-    const root = rootRef.current;
-    if (!root) return;
-
-    let animationFrame = 0;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry?.isIntersecting) return;
-
-        observer.disconnect();
-        const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-        if (reducedMotion) {
-          setCounts(stats.map((stat) => stat.value));
-          return;
-        }
-
-        const startedAt = performance.now();
-        const duration = 1600;
-
-        function updateCounter(now: number) {
-          const progress = Math.min((now - startedAt) / duration, 1);
-          const easedProgress = 1 - Math.pow(1 - progress, 3);
-          setCounts(stats.map((stat) => Math.round(stat.value * easedProgress)));
-
-          if (progress < 1) animationFrame = requestAnimationFrame(updateCounter);
-        }
-
-        animationFrame = requestAnimationFrame(updateCounter);
-      },
-      { threshold: 0.3 },
-    );
-
-    observer.observe(root);
-    return () => {
-      observer.disconnect();
-      cancelAnimationFrame(animationFrame);
-    };
-  }, []);
 
   function handleKeyDown(event: KeyboardEvent<HTMLDivElement>) {
     if (event.key === "ArrowLeft") {
@@ -156,7 +108,7 @@ export function StudentSuccessShowcase() {
   }
 
   return (
-    <div className={styles.showcase} ref={rootRef}>
+    <div className={styles.showcase}>
       <div
         className={styles.carousel}
         role="region"
@@ -232,24 +184,6 @@ export function StudentSuccessShowcase() {
         >
           <Image src={`${assetRoot}/arrow-right.svg`} alt="" width={106} height={106} />
         </button>
-      </div>
-
-      <div className={styles.stats} aria-label="WIN Education in numbers">
-        {stats.map((stat, index) => (
-          <div className={styles.stat} key={stat.label}>
-            <p className={styles.statValue}>
-              <span aria-hidden="true">
-                {counts[index]}
-                {stat.suffix}
-              </span>
-              <span className={styles.srOnly}>
-                {stat.value}
-                {stat.suffix}
-              </span>
-            </p>
-            <p className={styles.statLabel}>{stat.label}</p>
-          </div>
-        ))}
       </div>
     </div>
   );

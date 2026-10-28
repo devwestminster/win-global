@@ -1,0 +1,64 @@
+.section {
+  display: grid;
+  min-height: clamp(680px, 71.6vw, 1031px);
+  align-content: center;
+  justify-items: center;
+  gap: clamp(36px, 4.17vw, 60px);
+  padding: clamp(64px, 6.95vw, 100px) var(--page-gutter);
+  overflow: hidden;
+  background: var(--color-surface);
+}
+
+.stat {
+  display: grid;
+  width: min(100%, 510px);
+  justify-items: center;
+  gap: 12px;
+  text-align: center;
+}
+
+.divider {
+  width: min(calc(100vw - (2 * var(--page-gutter))), 1160px);
+  height: 1px;
+  background: url("/assets/home/stats-divider.svg") center / 100% 1px no-repeat;
+}
+
+.value,
+.label {
+  margin: 0;
+}
+
+.value {
+  color: var(--color-text-primary);
+  font-size: clamp(4rem, 8.62vw, 7.75rem);
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+}
+
+.label {
+  color: var(--color-text-secondary);
+  font-size: clamp(1rem, 1.67vw, 1.5rem);
+  line-height: 1.5;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (max-width: 767px) {
+  .section {
+    min-height: 680px;
+  }
+
+  .divider {
+    width: calc(100vw - (2 * var(--page-gutter)));
+  }
+}

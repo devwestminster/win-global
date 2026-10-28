@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ContentPageShell } from "@/components/layout/content-page-shell";
+import { UkStudyPage } from "@/components/study-abroad/uk-study-page";
 import { destinationPageContent } from "@/data/page-content";
 
 type DestinationSlug = keyof typeof destinationPageContent;
@@ -29,6 +30,10 @@ export default async function DestinationPage({
 }: DestinationPageProps) {
   const { destination } = await params;
   if (!isDestinationSlug(destination)) notFound();
+
+  if (destination === "united-kingdom") {
+    return <UkStudyPage />;
+  }
 
   return <ContentPageShell {...destinationPageContent[destination]} />;
 }

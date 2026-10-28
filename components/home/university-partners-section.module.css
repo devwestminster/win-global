@@ -1,5 +1,5 @@
 .section {
-  padding: 0 var(--page-gutter) 60px;
+  padding: 100px var(--page-gutter);
   background: var(--color-surface);
 }
 
@@ -12,7 +12,7 @@
   display: grid;
   margin: 0;
   color: var(--color-text-primary);
-  font-size: clamp(2rem, 3.1vw, 2.75rem);
+  font-size: clamp(2.5rem, 3.75vw, 3.375rem);
   font-weight: 600;
   letter-spacing: -0.025em;
   line-height: 1.2;
@@ -25,78 +25,86 @@
 
 .explorer {
   display: grid;
-  gap: 32px;
-  margin-top: 40px;
+  gap: 60px;
+  margin-top: 60px;
 }
 
 .tabScroller {
+  margin-block: -8px;
+  padding-block: 8px;
   overflow-x: auto;
   overscroll-behavior-inline: contain;
   scroll-snap-type: inline proximity;
-  scrollbar-width: thin;
+  scrollbar-width: none;
+}
+
+.tabScroller::-webkit-scrollbar {
+  display: none;
 }
 
 .tabs {
   display: flex;
   width: max-content;
+  height: 29px;
   min-width: 100%;
+  align-items: center;
   justify-content: center;
-  gap: 32px;
-  padding: 2px;
+  gap: clamp(28px, 4.17vw, 60px);
 }
 
 .tab {
+  min-width: max-content;
+  min-height: var(--touch-target);
   scroll-snap-align: center;
-  min-height: 56px;
-  padding: 12px 36px;
-  border: 1px solid var(--color-brand-600);
-  border-radius: var(--radius-sm);
-  background: #fff;
-  color: var(--color-brand-600);
+  padding: 6px 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-text-secondary);
   cursor: pointer;
-  font-weight: 600;
-  line-height: 1;
-  white-space: nowrap;
-  transition: background-color 160ms ease, color 160ms ease, transform 160ms ease;
+  font-size: 1.5rem;
+  font-weight: 300;
+  line-height: 1.2;
+  transition: color 160ms ease, font-weight 160ms ease;
 }
 
 .tab:hover {
-  background: #f6f4ff;
-}
-
-.tab:active {
-  transform: translateY(1px);
+  color: var(--color-text-primary);
 }
 
 .activeTab,
 .activeTab:hover {
-  background: var(--color-brand-500);
-  color: #fff;
+  color: var(--color-text-primary);
+  font-weight: 600;
 }
 
 .panel {
+  display: grid;
   min-width: 0;
+  justify-items: center;
+  gap: 32px;
   outline: none;
 }
 
 .panel:focus-visible {
   border-radius: var(--radius-sm);
   outline: 3px solid var(--color-focus);
-  outline-offset: 6px;
+  outline-offset: 8px;
 }
 
 .logoGrid {
-  --card-height: 152px;
-  --collapsed-grid-height: 336px;
+  --card-height: 151.5px;
+  --collapsed-grid-height: 359px;
   --expanded-grid-height: var(--expanded-height-desktop);
   --grid-gap: 32px;
+  --grid-top-padding: 24px;
 
   display: grid;
+  width: 100%;
   max-height: var(--collapsed-grid-height);
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: var(--grid-gap);
   margin: 0;
-  padding: 0;
+  padding: var(--grid-top-padding) 0 0;
   overflow: clip;
   list-style: none;
   transition: max-height 520ms cubic-bezier(0.22, 1, 0.36, 1);
@@ -116,10 +124,8 @@
   place-items: center;
   overflow: hidden;
   padding: 24px 16px;
-  border: 0.5px solid #98989a;
   border-radius: var(--radius-sm);
   background: #fff;
-  box-shadow: 0 4px 4px rgb(0 0 0 / 5%);
   transition: opacity 220ms ease, transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -141,41 +147,33 @@
 }
 
 .toggle {
+  position: relative;
   display: grid;
   width: 64px;
   height: 64px;
   place-items: center;
-  margin: 20px auto 0;
   padding: 0;
-  border: 1px solid var(--color-brand-500);
-  border-radius: var(--radius-full);
-  background: #fff;
-  box-shadow: 0 8px 20px rgb(11 34 80 / 8%);
-  color: var(--color-brand-500);
+  border: 0;
+  background: transparent;
   cursor: pointer;
-  transition: background-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
 }
 
-.toggle:hover {
-  background: #f6f4ff;
-  box-shadow: 0 10px 24px rgb(11 34 80 / 12%);
-}
-
-.toggle:active {
-  transform: translateY(1px);
-}
-
-.toggleIcon {
-  width: 18px;
-  height: 18px;
-  border-right: 2px solid currentColor;
-  border-bottom: 2px solid currentColor;
-  transform: translateY(-4px) rotate(45deg);
+.toggleAsset {
+  display: block;
+  width: 106px;
+  max-width: none;
+  height: 106px;
+  transform: rotate(90deg);
   transition: transform 200ms ease;
 }
 
-.expandedIcon {
-  transform: translateY(4px) rotate(225deg);
+.toggle:hover .toggleAsset {
+  transform: rotate(90deg) scale(1.03);
+}
+
+.expandedAsset,
+.toggle:hover .expandedAsset {
+  transform: rotate(270deg);
 }
 
 @keyframes logo-card-reveal {
@@ -198,14 +196,12 @@
 
 .comingSoon {
   display: grid;
-  min-height: 336px;
+  width: 100%;
+  min-height: 359px;
   place-content: center;
   gap: 8px;
   padding: 32px;
-  border: 1px dashed #d6d7dd;
-  border-radius: var(--radius-md);
-  background: var(--color-surface-soft);
-  color: #8a8f9c;
+  color: var(--color-text-secondary);
   text-align: center;
 }
 
@@ -215,6 +211,7 @@
 }
 
 .comingSoon p {
+  color: var(--color-text-primary);
   font-size: 1.25rem;
   font-weight: 600;
 }
@@ -224,14 +221,30 @@
 }
 
 @media (max-width: 1100px) {
+  .section {
+    padding-block: 80px;
+  }
+
+  .explorer {
+    gap: 48px;
+    margin-top: 48px;
+  }
+
   .tabs {
     justify-content: flex-start;
-    gap: 16px;
+    gap: 36px;
+  }
+
+  .tab {
+    font-size: 1.25rem;
   }
 
   .logoGrid {
+    --card-height: 132px;
+    --collapsed-grid-height: 304px;
     --expanded-grid-height: var(--expanded-height-tablet);
     --grid-gap: 20px;
+    --grid-top-padding: 20px;
 
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -259,32 +272,36 @@
 
 @media (max-width: 767px) {
   .section {
-    padding-bottom: 48px;
+    padding-block: 64px;
   }
 
   .inner h2 {
-    font-size: clamp(2rem, 9.6vw, 2.25rem);
+    font-size: clamp(2rem, 9.6vw, 2.5rem);
   }
 
   .explorer {
-    gap: 24px;
-    margin-top: 32px;
+    gap: 36px;
+    margin-top: 36px;
   }
 
   .tabs {
-    gap: 12px;
+    gap: 28px;
   }
 
   .tab {
-    min-height: 48px;
-    padding: 12px 24px;
+    font-size: 1.125rem;
+  }
+
+  .panel {
+    gap: 24px;
   }
 
   .logoGrid {
-    --card-height: 116px;
+    --card-height: 108px;
     --collapsed-grid-height: 244px;
     --expanded-grid-height: var(--expanded-height-mobile);
     --grid-gap: 12px;
+    --grid-top-padding: 16px;
 
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -312,10 +329,6 @@
     height: 78px;
   }
 
-  .toggle {
-    margin-top: 12px;
-  }
-
   .toggle.noMobileOverflow {
     display: none;
   }
@@ -328,8 +341,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .tab,
-  .toggle,
-  .toggleIcon {
+  .toggleAsset {
     transition: none;
   }
 

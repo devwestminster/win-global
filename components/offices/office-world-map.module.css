@@ -1,0 +1,228 @@
+.map {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 644 / 324;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.base,
+.correction {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 58%;
+  user-select: none;
+}
+
+.correction {
+  z-index: 1;
+  pointer-events: none;
+}
+
+.map::before,
+.map::after {
+  position: absolute;
+  z-index: 4;
+  right: 0;
+  left: 0;
+  height: 18%;
+  pointer-events: none;
+  content: "";
+}
+
+.map::before {
+  top: 0;
+  background: linear-gradient(to bottom, #fff, transparent);
+}
+
+.map::after {
+  bottom: 0;
+  height: 50%;
+  background: linear-gradient(to bottom, transparent, #fff);
+}
+
+.coordinateLayer {
+  position: absolute;
+  z-index: 2;
+  top: 58%;
+  left: 0;
+  width: 100%;
+  aspect-ratio: 1491 / 1055;
+  pointer-events: none;
+  transform: translateY(-58%);
+}
+
+.location {
+  --pin-width: clamp(18px, 2.1vw, 28px);
+
+  position: absolute;
+  z-index: 2;
+  top: var(--location-y);
+  left: var(--location-x);
+  width: var(--pin-width);
+  transform: translate(-50%, -100%);
+}
+
+.pin {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  aspect-ratio: 42 / 66;
+  background: url("/assets/offices/map/location-pin.svg") center / contain no-repeat;
+  filter: drop-shadow(0 3px 3px rgb(31 25 54 / 20%));
+  opacity: 0;
+  transform-origin: center bottom;
+  animation: pin-in 640ms cubic-bezier(0.2, 0.95, 0.3, 1.22) forwards;
+  animation-delay: calc(120ms + var(--location-order) * 90ms);
+}
+
+.shadow {
+  position: absolute;
+  z-index: 1;
+  bottom: -4%;
+  left: 50%;
+  width: 68%;
+  aspect-ratio: 2.4 / 1;
+  border-radius: 50%;
+  background: rgb(44 42 54 / 34%);
+  filter: blur(1px);
+  opacity: 0;
+  transform: translateX(-50%) scale(0.35);
+  transform-origin: center;
+  animation: shadow-in 640ms ease-out forwards;
+  animation-delay: calc(120ms + var(--location-order) * 90ms);
+}
+
+.label {
+  position: absolute;
+  z-index: 1;
+  bottom: 11%;
+  left: 88%;
+  display: grid;
+  min-width: max-content;
+  padding: 0.38em 0.95em 0.42em;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #6252b8, #35218b);
+  box-shadow: 0 4px 10px rgb(48 43 115 / 13%);
+  color: #fff;
+  font-size: clamp(7px, 0.78vw, 11px);
+  line-height: 1.04;
+  text-align: center;
+  opacity: 0;
+  transform: translate3d(-8px, 3px, 0) scale(0.94);
+  transform-origin: left center;
+  animation: label-in 340ms cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+  animation-delay: calc(460ms + var(--location-order) * 90ms);
+}
+
+.label::before {
+  position: absolute;
+  z-index: -1;
+  right: calc(100% - 2px);
+  bottom: 10%;
+  width: clamp(12px, 1.8vw, 27px);
+  height: 2px;
+  background: #3e357f;
+  content: "";
+  transform: rotate(-42deg);
+  transform-origin: right center;
+}
+
+.label strong {
+  font-size: 1em;
+  font-weight: 700;
+}
+
+.label small {
+  margin-top: 0.08em;
+  font-size: 0.8em;
+  font-weight: 500;
+}
+
+.labelPakistan {
+  bottom: 35%;
+  left: 105%;
+}
+
+.labelPakistan::before {
+  bottom: 0;
+  transform: rotate(-32deg);
+}
+
+.labelIndia {
+  bottom: -50%;
+  left: 105%;
+}
+
+.labelIndia::before {
+  bottom: 70%;
+  transform: rotate(32deg);
+}
+
+@keyframes pin-in {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -24px, 0) scale(0.68);
+  }
+
+  55% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1.1, 0.91);
+  }
+
+  76% {
+    opacity: 1;
+    transform: translate3d(0, -3px, 0) scale(0.97, 1.04);
+  }
+
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes shadow-in {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) scale(0.25);
+  }
+
+  55% {
+    opacity: 0.42;
+    transform: translateX(-50%) scale(1.12, 0.82);
+  }
+
+  100% {
+    opacity: 0.32;
+    transform: translateX(-50%) scale(1);
+  }
+}
+
+@keyframes label-in {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .location {
+    --pin-width: clamp(13px, 5vw, 20px);
+  }
+
+  .label {
+    font-size: clamp(5px, 1.8vw, 8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pin,
+  .shadow,
+  .label {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}

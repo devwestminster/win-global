@@ -1,4 +1,6 @@
 import { HeroSection } from "@/components/home/hero-section";
+import { FlagshipFilmSection } from "@/components/home/flagship-film-section";
+import { ImpactStatsSection } from "@/components/home/impact-stats-section";
 import { HowItWorksSection } from "@/components/home/how-it-works-section";
 import { StudentSuccessSection } from "@/components/home/student-success-section";
 import { StudyDestinationsSection } from "@/components/home/study-destinations-section";
@@ -18,8 +20,10 @@ export default function HomePage() {
           <UniversityChoiceSection />
         </div>
       </div>
+      <ImpactStatsSection />
       <StudentSuccessSection />
       <UniversityPartnersSection />
+      <FlagshipFilmSection />
       <HowItWorksSection />
       <StudyDestinationsSection />
       <WhyFamiliesChooseSection />
