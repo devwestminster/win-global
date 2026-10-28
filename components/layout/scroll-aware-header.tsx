@@ -1,6 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
+import { usePathname } from "next/navigation";
 import { useSyncExternalStore } from "react";
 import styles from "./site-header.module.css";
 
@@ -57,6 +58,7 @@ function getServerScrollSnapshot() {
 }
 
 export function ScrollAwareHeader({ children }: { children: ReactNode }) {
+  const pathname = usePathname();
   const snapshot = useSyncExternalStore(
     subscribeToScroll,
     getScrollSnapshot,
@@ -64,10 +66,11 @@ export function ScrollAwareHeader({ children }: { children: ReactNode }) {
   );
   const isScrolled = (snapshot & 1) !== 0;
   const isHidden = (snapshot & 2) !== 0;
+  const overlaysHero = pathname === "/study-abroad/united-kingdom";
 
   return (
     <header
-      className={`${styles.header} ${isScrolled ? styles.headerScrolled : ""} ${isHidden ? styles.headerHidden : ""}`}
+      className={`${styles.header} ${overlaysHero ? styles.headerOverHero : ""} ${isScrolled ? styles.headerScrolled : ""} ${isHidden ? styles.headerHidden : ""}`}
       aria-hidden={isHidden || undefined}
       inert={isHidden}
     >

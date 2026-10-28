@@ -8,12 +8,18 @@
   opacity: 1;
   transform: translateY(0);
   visibility: visible;
-  transition: border-color 180ms ease, opacity 280ms cubic-bezier(0.16, 1, 0.3, 1),
+  transition: background-color 180ms ease, border-color 180ms ease,
+    opacity 280ms cubic-bezier(0.16, 1, 0.3, 1),
     transform 320ms cubic-bezier(0.16, 1, 0.3, 1), visibility 0s linear;
 }
 
 .headerScrolled {
   border-bottom-color: #edeef2;
+}
+
+.headerOverHero:not(.headerScrolled) {
+  border-bottom-color: transparent;
+  background: transparent;
 }
 
 .headerHidden {
@@ -58,10 +64,10 @@
 .navGroup > button {
   border: 0;
   background: transparent;
-  color: var(--color-brand-600);
+  color: #171829;
   cursor: pointer;
   font-size: 0.875rem;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 1.5;
   white-space: nowrap;
 }
@@ -72,11 +78,14 @@
   align-items: center;
 }
 
-.navLink:hover,
 .navLink[aria-current="page"],
-.navGroup > button:hover,
-.navGroup > button[aria-expanded="true"],
 .navGroup > button[data-current="true"] {
+  color: #171829;
+}
+
+.navLink:hover,
+.navGroup > button:hover,
+.navGroup > button[aria-expanded="true"] {
   color: var(--color-brand-700);
 }
 
@@ -97,6 +106,7 @@
   height: 9px;
   border-right: 2px solid currentColor;
   border-bottom: 2px solid currentColor;
+  color: #171829;
   transform: translateY(-2px) rotate(45deg);
   transition: transform 180ms ease;
 }
@@ -182,7 +192,7 @@ button[aria-expanded="true"] > .chevron {
     padding: 0;
     border: 0;
     background: transparent;
-    color: var(--color-brand-600);
+    color: #171829;
     cursor: pointer;
   }
 
@@ -220,6 +230,8 @@ button[aria-expanded="true"] > .chevron {
     z-index: 100;
     inset: 0;
     display: block;
+    width: 100%;
+    min-height: 100dvh;
     overflow-y: auto;
     overscroll-behavior: contain;
     background: #fff;

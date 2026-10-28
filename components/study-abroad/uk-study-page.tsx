@@ -20,14 +20,14 @@ export function UkStudyPage() {
       <section className={styles.hero} aria-labelledby="uk-page-title">
         <Image
           className={styles.heroImage}
-          src="/assets/study-abroad/uk/hero.png"
+          src="/assets/study-abroad/uk/hero.webp"
           alt="Palace of Westminster and Big Ben in London"
           fill
+          unoptimized
           fetchPriority="high"
           loading="eager"
-          sizes="100vw"
         />
-        <div className={styles.heroFade} />
+        <div className={styles.heroFade} aria-hidden="true" />
         <div className={styles.heroContent}>
           <div className={styles.heroHeading}>
             <p className={styles.eyebrow}>Study in</p>
@@ -37,7 +37,6 @@ export function UkStudyPage() {
             Discover world-class universities and one-year master’s degrees. We’ll help you
             compare courses, costs, entry requirements and scholarships.
           </p>
-          <ActionLink href={consultationHref}>Book a free consultation</ActionLink>
         </div>
       </section>
 

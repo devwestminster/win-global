@@ -2,6 +2,7 @@
 
 import type { KeyboardEvent } from "react";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -225,7 +226,7 @@ export function HeaderNavigation() {
       <button
         className={styles.mobileToggle}
         type="button"
-        aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+        aria-label="Open navigation menu"
         aria-controls="mobile-navigation"
         aria-expanded={mobileMenuOpen}
         ref={mobileToggleRef}
@@ -234,94 +235,97 @@ export function HeaderNavigation() {
         <span className={styles.menuIcon} aria-hidden="true" />
       </button>
 
-      {mobileMenuOpen ? (
-        <div
-          className={styles.mobileOverlay}
-          id="mobile-navigation"
-          role="dialog"
-          aria-modal="true"
-          aria-label="Navigation menu"
-          onKeyDown={trapDialogFocus}
-        >
-          <div className={styles.mobileOverlayInner}>
-            <div className={styles.mobileTopbar}>
-              <Link
-                className={styles.mobileLogo}
-                href="/"
-                aria-label="WIN Education home"
-                onClick={closeMobileMenu}
-              >
-                <span className={styles.mobileLogoImage} aria-hidden="true" />
-              </Link>
-              <button
-                className={styles.mobileClose}
-                type="button"
-                aria-label="Close navigation menu"
-                ref={mobileCloseRef}
-                onClick={closeMobileMenu}
-              >
-                <span aria-hidden="true" />
-              </button>
-            </div>
+      {mobileMenuOpen && hydrated
+        ? createPortal(
+            <div
+              className={styles.mobileOverlay}
+              id="mobile-navigation"
+              role="dialog"
+              aria-modal="true"
+              aria-label="Navigation menu"
+              onKeyDown={trapDialogFocus}
+            >
+              <div className={styles.mobileOverlayInner}>
+                <div className={styles.mobileTopbar}>
+                  <Link
+                    className={styles.mobileLogo}
+                    href="/"
+                    aria-label="WIN Education home"
+                    onClick={closeMobileMenu}
+                  >
+                    <span className={styles.mobileLogoImage} aria-hidden="true" />
+                  </Link>
+                  <button
+                    className={styles.mobileClose}
+                    type="button"
+                    aria-label="Close navigation menu"
+                    ref={mobileCloseRef}
+                    onClick={closeMobileMenu}
+                  >
+                    <span aria-hidden="true" />
+                  </button>
+                </div>
 
-            <nav className={styles.mobileNav} aria-label="Mobile navigation">
-              {navigationItems.map((item) => {
-                if (!item.children?.length) {
-                  return (
-                    <div className={styles.mobileNavRow} key={item.href}>
-                      <DirectLink
-                        item={item}
-                        pathname={activePathname}
-                        onNavigate={closeMobileMenu}
-                      />
-                    </div>
-                  );
-                }
-
-                const submenuId = `mobile-menu-${item.href.replaceAll("/", "-")}`;
-                const isOpen = mobileSubmenu === item.href;
-
-                return (
-                  <div className={styles.mobileNavRow} key={item.href}>
-                    <button
-                      className={styles.mobileAccordionButton}
-                      type="button"
-                      aria-controls={submenuId}
-                      aria-expanded={isOpen}
-                      data-current={isPathActive(activePathname, item.href) || undefined}
-                      onClick={() => setMobileSubmenu(isOpen ? null : item.href)}
-                    >
-                      <span>{item.label}</span>
-                      <span className={styles.chevron} aria-hidden="true" />
-                    </button>
-
-                    {isOpen ? (
-                      <div className={styles.mobileSubmenu} id={submenuId}>
-                        {item.children.map((child) => (
-                          <ChildLink
-                            child={child}
-                            key={child.href}
+                <nav className={styles.mobileNav} aria-label="Mobile navigation">
+                  {navigationItems.map((item) => {
+                    if (!item.children?.length) {
+                      return (
+                        <div className={styles.mobileNavRow} key={item.href}>
+                          <DirectLink
+                            item={item}
                             pathname={activePathname}
                             onNavigate={closeMobileMenu}
                           />
-                        ))}
-                      </div>
-                    ) : null}
-                  </div>
-                );
-              })}
-            </nav>
+                        </div>
+                      );
+                    }
 
-            <ActionLink
-              className={styles.mobileCta}
-              href={siteConfig.consultationPath}
-              onClick={closeMobileMenu}
-            >
-              Book a free consultation
-            </ActionLink>
-          </div>
-        </div>
-      ) : null}
+                    const submenuId = `mobile-menu-${item.href.replaceAll("/", "-")}`;
+                    const isOpen = mobileSubmenu === item.href;
+
+                    return (
+                      <div className={styles.mobileNavRow} key={item.href}>
+                        <button
+                          className={styles.mobileAccordionButton}
+                          type="button"
+                          aria-controls={submenuId}
+                          aria-expanded={isOpen}
+                          data-current={isPathActive(activePathname, item.href) || undefined}
+                          onClick={() => setMobileSubmenu(isOpen ? null : item.href)}
+                        >
+                          <span>{item.label}</span>
+                          <span className={styles.chevron} aria-hidden="true" />
+                        </button>
+
+                        {isOpen ? (
+                          <div className={styles.mobileSubmenu} id={submenuId}>
+                            {item.children.map((child) => (
+                              <ChildLink
+                                child={child}
+                                key={child.href}
+                                pathname={activePathname}
+                                onNavigate={closeMobileMenu}
+                              />
+                            ))}
+                          </div>
+                        ) : null}
+                      </div>
+                    );
+                  })}
+                </nav>
+
+                <ActionLink
+                  className={styles.mobileCta}
+                  href={siteConfig.consultationPath}
+                  onClick={closeMobileMenu}
+                >
+                  Book a free consultation
+                </ActionLink>
+              </div>
+            </div>,
+            document.body,
+          )
+        : null}
     </div>
   );
 }

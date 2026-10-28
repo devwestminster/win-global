@@ -1,21 +1,22 @@
 .section {
   position: relative;
   overflow: hidden;
-  padding: 60px var(--page-gutter);
-  background: var(--color-surface);
+  padding: 100px 0;
+  background: #fff;
 }
 
 .heading {
   display: grid;
   justify-items: center;
   gap: 12px;
+  padding-inline: var(--page-gutter);
   text-align: center;
 }
 
 .heading h2 {
   margin: 0;
   color: var(--color-brand-500);
-  font-size: 2.75rem;
+  font-size: clamp(2.75rem, 3.75vw, 3.375rem);
   font-weight: 600;
   letter-spacing: -0.025em;
   line-height: 1.2;
@@ -34,171 +35,155 @@
   line-height: 1.5;
 }
 
-.showcase {
-  width: min(100%, 1261px);
-  margin: 60px auto 0;
-}
-
-.carousel {
-  position: relative;
+.carouselViewport {
   width: 100%;
-  aspect-ratio: 1261 / 467;
-  touch-action: pan-y;
+  margin-top: 60px;
+  overflow: hidden;
+  outline: none;
 }
 
-.slide {
+.carouselViewport:focus-visible {
+  box-shadow: inset 0 0 0 3px rgb(74 64 154 / 45%);
+}
+
+.carouselTrack {
+  --loop-offset: 32px;
+
+  display: flex;
+  width: max-content;
+  gap: 64px;
+  will-change: transform;
+  animation: student-stories-right 36s linear infinite;
+}
+
+.carouselViewport:hover .carouselTrack,
+.carouselViewport:focus .carouselTrack,
+.carouselViewport:focus-within .carouselTrack {
+  animation-play-state: paused;
+}
+
+.storyGroup {
+  display: flex;
+  flex: none;
+  gap: 64px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.storyCard {
+  width: 497px;
+  height: 490px;
+  flex: none;
+  overflow: hidden;
+  border: 0.75px solid #697184;
+  border-radius: 18px;
+}
+
+.storyCard img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.visuallyHidden {
   position: absolute;
-  inset: 0;
-  opacity: 0;
-  pointer-events: none;
-  visibility: hidden;
-  transform: translateX(18px);
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
-.activeSlide {
-  z-index: 1;
-  opacity: 1;
-  visibility: visible;
-  transform: none;
-  animation: reveal-student-slide 1100ms cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-@keyframes reveal-student-slide {
+@keyframes student-stories-right {
   from {
-    transform: translateX(18px);
+    transform: translate3d(calc(-50% - var(--loop-offset)), 0, 0);
   }
 
   to {
-    transform: none;
+    transform: translate3d(0, 0, 0);
   }
-}
-
-.universityGrid {
-  position: absolute;
-  z-index: 2;
-  top: 0;
-  right: 2.93%;
-  left: 2.93%;
-  display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: 3.3%;
-}
-
-.universityCard {
-  display: grid;
-  width: 100%;
-  aspect-ratio: 165.565 / 85;
-  place-items: center;
-  overflow: hidden;
-  padding: 2.4% 9.6%;
-  border: 1px solid #d6d6d8;
-  border-radius: clamp(3px, 0.95vw, 12px);
-  background: #fff;
-  box-shadow: 0 3px 3px rgb(0 0 0 / 5%);
-}
-
-.universityCard img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-.studentsImage {
-  position: absolute;
-  top: 10.28%;
-  left: 0.87%;
-  width: 98.02%;
-  height: auto;
-}
-
-.carouselButton {
-  position: absolute;
-  z-index: 3;
-  top: 50%;
-  width: 64px;
-  height: 64px;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  cursor: pointer;
-  transform: translateY(-18%);
-}
-
-.carouselButton img {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  max-width: none;
-  transform: translate(-50%, -50%);
-}
-
-.previousButton {
-  left: 0;
-}
-
-.nextButton {
-  right: 0;
 }
 
 @media (max-width: 1100px) {
   .section {
-    padding-block: 56px;
+    padding-block: 80px;
   }
 
-  .showcase {
+  .carouselViewport {
     margin-top: 48px;
   }
 
-  .heading h2 {
-    font-size: 2.5rem;
+  .carouselTrack,
+  .storyGroup {
+    gap: 40px;
+  }
+
+  .carouselTrack {
+    --loop-offset: 20px;
+  }
+
+  .storyCard {
+    width: 430px;
+    height: 424px;
   }
 }
 
 @media (max-width: 767px) {
   .section {
-    padding-block: 48px;
+    padding-block: 64px;
   }
 
   .heading h2 {
-    max-width: 520px;
-    font-size: clamp(2rem, 9.6vw, 2.25rem);
+    max-width: 360px;
+    font-size: clamp(2.25rem, 10vw, 2.75rem);
   }
 
   .heading p {
     font-size: 0.9375rem;
   }
 
-  .showcase {
-    margin-top: 36px;
+  .carouselViewport {
+    margin-top: 40px;
   }
 
-  .universityCard {
-    border-width: 0.5px;
-    box-shadow: 0 1px 2px rgb(0 0 0 / 5%);
+  .carouselTrack,
+  .storyGroup {
+    gap: 24px;
   }
 
-  .carouselButton {
-    top: 69%;
-    width: 48px;
-    height: 48px;
+  .carouselTrack {
+    --loop-offset: 12px;
+
+    animation-duration: 30s;
   }
 
-  .carouselButton img {
-    width: 80px;
-    height: 80px;
-  }
-
-  .previousButton {
-    left: -8px;
-  }
-
-  .nextButton {
-    right: -8px;
+  .storyCard {
+    width: min(84vw, 360px);
+    height: min(82.8vw, 355px);
+    border-radius: 16px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .activeSlide {
+  .carouselViewport {
+    overflow-x: auto;
+    padding-inline: var(--page-gutter);
+    scrollbar-width: thin;
+  }
+
+  .carouselTrack {
+    gap: 0;
     animation: none;
+    will-change: auto;
+  }
+
+  .storyGroup[aria-hidden="true"] {
+    display: none;
   }
 }
