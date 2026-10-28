@@ -20,7 +20,7 @@ export function UkStudyPage() {
       <section className={styles.hero} aria-labelledby="uk-page-title">
         <Image
           className={styles.heroImage}
-          src="/assets/study-abroad/uk/hero.webp"
+          src="/assets/study-abroad/uk/uk.png"
           alt="Palace of Westminster and Big Ben in London"
           fill
           unoptimized
