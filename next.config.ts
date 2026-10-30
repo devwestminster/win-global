@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { PHASE_DEVELOPMENT_SERVER } from "next/constants";
 
 const wordpressUrl = process.env.WORDPRESS_API_URL;
 
@@ -18,9 +19,28 @@ try {
   // The application remains buildable before the CMS URL is configured.
 }
 
-const nextConfig: NextConfig = {
-  images: { remotePatterns },
-  poweredByHeader: false,
+const createNextConfig = (phase: string): NextConfig => {
+  const isDevelopmentServer = phase === PHASE_DEVELOPMENT_SERVER;
+
+  return {
+    // Keep development artifacts separate so `next build` cannot contend with
+    // a running dev server for the same lock or output directory.
+    distDir: isDevelopmentServer ? ".next-dev" : ".next",
+    experimental: {
+      cssChunking: {
+        type: "graph",
+        requestCost: 0,
+        weightDistribution: 0.1,
+      },
+    },
+    images: {
+      deviceSizes: [640, 750, 828, 1080, 1200, 1440, 1536, 1920, 2048, 2880, 3840],
+      formats: ["image/webp"],
+      qualities: [75, 85, 90],
+      remotePatterns,
+    },
+    poweredByHeader: false,
+  };
 };
 
-export default nextConfig;
+export default createNextConfig;

@@ -1,6 +1,7 @@
 import styles from "./animated-win-logo.module.css";
 
-const logoPath = "/assets/brand/win-logo.svg";
+const defaultLogoPath = "/assets/brand/win-logo.svg";
+const lightLogoPath = "/assets/brand/logo win new white.svg";
 
 export function AnimatedWinLogo() {
   return (
@@ -55,21 +56,38 @@ export function AnimatedWinLogo() {
         </clipPath>
       </defs>
 
-      <image
-        href={logoPath}
-        width="187"
-        height="23.2257"
-        preserveAspectRatio="none"
-        mask="url(#win-logo-draw-mask)"
-      />
-      <image
-        className={styles.tagline}
-        href={logoPath}
-        width="187"
-        height="23.2257"
-        preserveAspectRatio="none"
-        clipPath="url(#win-logo-tagline-clip)"
-      />
+      <g mask="url(#win-logo-draw-mask)">
+        <image
+          className={styles.defaultLayer}
+          href={defaultLogoPath}
+          width="187"
+          height="23.2257"
+          preserveAspectRatio="none"
+        />
+        <image
+          className={styles.lightLayer}
+          href={lightLogoPath}
+          width="187"
+          height="23.2257"
+          preserveAspectRatio="none"
+        />
+      </g>
+      <g className={styles.tagline} clipPath="url(#win-logo-tagline-clip)">
+        <image
+          className={styles.defaultLayer}
+          href={defaultLogoPath}
+          width="187"
+          height="23.2257"
+          preserveAspectRatio="none"
+        />
+        <image
+          className={styles.lightLayer}
+          href={lightLogoPath}
+          width="187"
+          height="23.2257"
+          preserveAspectRatio="none"
+        />
+      </g>
     </svg>
   );
 }

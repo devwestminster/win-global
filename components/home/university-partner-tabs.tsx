@@ -5,10 +5,12 @@ import {
   type CSSProperties,
   type KeyboardEvent,
   type TransitionEvent,
+  useEffect,
   useId,
   useRef,
   useState,
 } from "react";
+import { scrollActiveItemIntoView } from "@/components/ui/scroll-active-item-into-view";
 import { type UniversityCountry, universityCountries } from "@/data/universities";
 import styles from "./university-partners-section.module.css";
 
@@ -51,26 +53,22 @@ export function UniversityPartnerTabs() {
     .filter(Boolean)
     .join(" ");
 
-  function scrollTabIntoView(index: number) {
+  useEffect(() => {
     const scroller = tabScrollerRef.current;
-    const tab = tabRefs.current[index];
+    const activeIndex = universityCountries.findIndex(({ id }) => id === activeCountryId);
+    const tab = tabRefs.current[activeIndex];
 
     if (!scroller || !tab || scroller.scrollWidth <= scroller.clientWidth) return;
 
-    const centeredPosition = tab.offsetLeft - (scroller.clientWidth - tab.offsetWidth) / 2;
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    scroller.scrollTo({
-      left: centeredPosition,
-      behavior: prefersReducedMotion ? "auto" : "smooth",
-    });
-  }
+    scrollActiveItemIntoView(scroller, tab, prefersReducedMotion ? "auto" : "smooth");
+  }, [activeCountryId]);
 
-  function selectCountry(id: (typeof universityCountries)[number]["id"], index: number) {
+  function selectCountry(id: (typeof universityCountries)[number]["id"]) {
     setActiveCountryId(id);
     setIsExpanded(false);
     setIsCollapsing(false);
-    scrollTabIntoView(index);
   }
 
   function toggleLogos() {
@@ -102,7 +100,7 @@ export function UniversityPartnerTabs() {
 
     event.preventDefault();
     const nextCountry = universityCountries[nextIndex];
-    selectCountry(nextCountry.id, nextIndex);
+    selectCountry(nextCountry.id);
     tabRefs.current[nextIndex]?.focus();
   }
 
@@ -126,7 +124,7 @@ export function UniversityPartnerTabs() {
                 aria-controls={panelId}
                 aria-selected={isActive}
                 tabIndex={isActive ? 0 : -1}
-                onClick={() => selectCountry(country.id, index)}
+                onClick={() => selectCountry(country.id)}
                 onKeyDown={(event) => handleTabKeyDown(event, index)}
               >
                 {country.label}
@@ -163,9 +161,9 @@ export function UniversityPartnerTabs() {
                     <Image
                       src={logo.src}
                       alt={logo.name}
-                      width={180}
-                      height={104}
-                      style={{ width: "100%", height: "100%", objectFit: "contain" }}
+                      fill
+                      quality={90}
+                      style={{ objectFit: "contain" }}
                       sizes="(max-width: 650px) 135px, 180px"
                     />
                   </span>

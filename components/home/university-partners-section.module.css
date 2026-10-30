@@ -159,21 +159,28 @@
 }
 
 .toggleAsset {
+  position: absolute;
+  top: 50%;
+  left: calc(50% - 8px);
   display: block;
   width: 106px;
   max-width: none;
   height: 106px;
-  transform: rotate(90deg);
+  transform: translate(-50%, -50%) rotate(90deg);
   transition: transform 200ms ease;
 }
 
 .toggle:hover .toggleAsset {
-  transform: rotate(90deg) scale(1.03);
+  transform: translate(-50%, -50%) rotate(90deg) scale(1.03);
+}
+
+.expandedAsset {
+  left: calc(50% + 8px);
 }
 
 .expandedAsset,
 .toggle:hover .expandedAsset {
-  transform: rotate(270deg);
+  transform: translate(-50%, -50%) rotate(270deg);
 }
 
 @keyframes logo-card-reveal {
@@ -284,12 +291,43 @@
     margin-top: 36px;
   }
 
+  .tabScroller {
+    width: calc(100% + (var(--page-gutter) * 2));
+    margin-inline: calc(var(--page-gutter) * -1);
+    padding-inline: var(--page-gutter);
+    scroll-padding-inline: var(--page-gutter);
+  }
+
   .tabs {
-    gap: 28px;
+    min-width: 0;
+    height: auto;
+    gap: 8px;
   }
 
   .tab {
-    font-size: 1.125rem;
+    min-height: 44px;
+    padding: 10px 16px;
+    border: 1px solid #d8d5ec;
+    border-radius: var(--radius-full);
+    background: #fff;
+    color: var(--color-brand-600);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 1;
+    transition: border-color 160ms ease, background-color 160ms ease, color 160ms ease;
+  }
+
+  .tab:hover {
+    border-color: var(--color-brand-500);
+    color: var(--color-brand-600);
+  }
+
+  .activeTab,
+  .activeTab:hover {
+    border-color: var(--color-brand-500);
+    background: var(--color-brand-500);
+    color: #fff;
   }
 
   .panel {

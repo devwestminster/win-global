@@ -1,8 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ActionLink } from "@/components/ui/action-link";
+import { ResponsivePicture } from "@/components/ui/responsive-picture";
+import { scrollActiveItemIntoView } from "@/components/ui/scroll-active-item-into-view";
 import styles from "./study-destinations-section.module.css";
 
 const destinations = [
@@ -12,6 +13,11 @@ const destinations = [
     description:
       "Discover world-class universities and one-year master’s degrees. We’ll help you compare courses, costs, entry requirements and scholarships.",
     image: "/assets/home/hero/hero-uk.jpg",
+    imageHeight: 1113,
+    imageWidth: 1920,
+    mobileImage: "/assets/home/destinations/united-kingdom-mobile.jpg",
+    mobileImageHeight: 1113,
+    mobileImageWidth: 742,
     imageClassName: styles.ukImage,
     cta: "Explore the UK",
   },
@@ -20,7 +26,12 @@ const destinations = [
     country: "Australia",
     description:
       "Earn a globally recognised degree in welcoming cities—with guidance on courses, applications, visas and scholarships.",
-    image: "/assets/home/destinations/australia.png",
+    image: "/assets/home/hero/hero-australia.jpg",
+    imageHeight: 1280,
+    imageWidth: 1920,
+    mobileImage: "/assets/home/destinations/australia-mobile.jpg",
+    mobileImageHeight: 1280,
+    mobileImageWidth: 853,
     imageClassName: styles.australiaImage,
     cta: "Explore Australia",
   },
@@ -29,7 +40,12 @@ const destinations = [
     country: "USA",
     description:
       "Explore flexible pathways across leading universities, from bachelor’s to postgraduate programs, matched to your goals and budget.",
-    image: "/assets/home/destinations/usa.jpg",
+    image: "/assets/home/hero/hero-usa.jpg",
+    imageHeight: 750,
+    imageWidth: 1440,
+    mobileImage: "/assets/home/destinations/usa-mobile.jpg",
+    mobileImageHeight: 1800,
+    mobileImageWidth: 1200,
     imageClassName: styles.usaImage,
     cta: "Explore the USA",
   },
@@ -39,6 +55,11 @@ const destinations = [
     description:
       "Study in a global education and business hub with respected degrees and strong international career connections.",
     image: "/assets/home/destinations/singapore.png",
+    imageHeight: 1024,
+    imageWidth: 1536,
+    mobileImage: "/assets/home/destinations/singapore-mobile.jpg",
+    mobileImageHeight: 1024,
+    mobileImageWidth: 683,
     imageClassName: styles.singaporeImage,
     cta: "Explore Singapore",
   },
@@ -47,7 +68,12 @@ const destinations = [
     country: "New Zealand",
     description:
       "Choose a safe, welcoming destination known for hands-on learning, research and an excellent quality of life.",
-    image: "/assets/home/destinations/new-zealand.jpg",
+    image: "/assets/home/destinations/new-zealand-desktop.jpg",
+    imageHeight: 2000,
+    imageWidth: 2000,
+    mobileImage: "/assets/home/destinations/new-zealand-mobile.jpg",
+    mobileImageHeight: 1800,
+    mobileImageWidth: 1200,
     imageClassName: styles.newZealandImage,
     cta: "Explore New Zealand",
   },
@@ -56,7 +82,12 @@ const destinations = [
     country: "Malaysia",
     description:
       "Access internationally recognised degrees and branch campuses at competitive costs in a multicultural study destination.",
-    image: "/assets/home/destinations/malaysia.jpg",
+    image: "/assets/home/destinations/malaysia-desktop.jpg",
+    imageHeight: 2000,
+    imageWidth: 2000,
+    mobileImage: "/assets/home/destinations/malaysia-mobile.jpg",
+    mobileImageHeight: 1800,
+    mobileImageWidth: 1200,
     imageClassName: styles.malaysiaImage,
     cta: "Explore Malaysia",
   },
@@ -66,6 +97,11 @@ const destinations = [
     description:
       "Find career-focused programs and respected institutions in diverse, student-friendly cities.",
     image: "/assets/home/destinations/canada.png",
+    imageHeight: 1024,
+    imageWidth: 1536,
+    mobileImage: "/assets/home/destinations/canada-mobile.jpg",
+    mobileImageHeight: 1024,
+    mobileImageWidth: 683,
     imageClassName: styles.canadaImage,
     cta: "Explore Canada",
   },
@@ -184,17 +220,11 @@ export function DestinationCarousel() {
     const activeButton = countryNav.querySelectorAll<HTMLButtonElement>("button")[activeIndex];
     if (!activeButton) return;
 
-    const navBounds = countryNav.getBoundingClientRect();
-    const buttonBounds = activeButton.getBoundingClientRect();
-
-    countryNav.scrollTo({
-      left:
-        countryNav.scrollLeft +
-        buttonBounds.left -
-        navBounds.left -
-        (countryNav.clientWidth - activeButton.offsetWidth) / 2,
-      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
-    });
+    scrollActiveItemIntoView(
+      countryNav,
+      activeButton,
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+    );
   }, [activeIndex]);
 
   const selectDestination = (index: number) => {
@@ -250,12 +280,27 @@ export function DestinationCarousel() {
           key={activeDestination.slug}
           aria-labelledby={`destination-${activeDestination.slug}`}
         >
-          <Image
+          <ResponsivePicture
             className={`${styles.cardImage} ${activeDestination.imageClassName}`}
-            src={activeDestination.image}
             alt=""
             fill
-            sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1100px) 70vw, 842px"
+            fallback={{
+              height: activeDestination.imageHeight,
+              quality: 90,
+              sizes: "(max-width: 1100px) calc(100vw - 108px), 1240px",
+              src: activeDestination.image,
+              width: activeDestination.imageWidth,
+            }}
+            sources={[
+              {
+                height: activeDestination.mobileImageHeight,
+                media: "(max-width: 767px)",
+                quality: 90,
+                sizes: "calc(100vw - 40px)",
+                src: activeDestination.mobileImage,
+                width: activeDestination.mobileImageWidth,
+              },
+            ]}
           />
           <div className={styles.cardShade} aria-hidden="true" />
           <div className={styles.cardContent}>

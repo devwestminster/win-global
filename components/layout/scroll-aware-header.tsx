@@ -5,6 +5,16 @@ import { usePathname } from "next/navigation";
 import { useSyncExternalStore } from "react";
 import styles from "./site-header.module.css";
 
+const heroOverlayPaths = new Set([
+  "/study-abroad/united-kingdom",
+  "/study-abroad/australia",
+  "/study-abroad/usa",
+  "/study-abroad/new-zealand",
+  "/study-abroad/singapore",
+  "/study-abroad/malaysia",
+  "/study-abroad/canada",
+]);
+
 function subscribeToScroll(updateSnapshot: () => void) {
   let frameId = 0;
 
@@ -66,11 +76,13 @@ export function ScrollAwareHeader({ children }: { children: ReactNode }) {
   );
   const isScrolled = (snapshot & 1) !== 0;
   const isHidden = (snapshot & 2) !== 0;
-  const overlaysHero = pathname === "/study-abroad/united-kingdom";
+  const overlaysHero = heroOverlayPaths.has(pathname);
+  const usesLightTone = overlaysHero && !isScrolled;
 
   return (
     <header
       className={`${styles.header} ${overlaysHero ? styles.headerOverHero : ""} ${isScrolled ? styles.headerScrolled : ""} ${isHidden ? styles.headerHidden : ""}`}
+      data-header-tone={usesLightTone ? "light" : undefined}
       aria-hidden={isHidden || undefined}
       inert={isHidden}
     >

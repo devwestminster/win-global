@@ -12,6 +12,7 @@
   inset: 0;
 }
 
+.backgroundPoster,
 .backgroundVideo {
   display: block;
   width: 100%;
@@ -19,6 +20,11 @@
   object-fit: cover;
   object-position: center bottom;
   pointer-events: none;
+}
+
+.backgroundVideo {
+  position: absolute;
+  inset: 0;
 }
 
 .overlay {
@@ -99,7 +105,6 @@
   }
 
   .backgroundVideo {
-    opacity: 0.58;
     object-position: center bottom;
   }
 

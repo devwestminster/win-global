@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { ResponsivePicture } from "@/components/ui/responsive-picture";
 import styles from "./flagship-film-section.module.css";
 
-const VIDEO_SRC = "/assets/home/hero/win-flagship-global-v2.mp4";
-const POSTER_SRC = "/assets/home/hero/win-flagship-global-v2-poster.jpg";
+const H264_VIDEO_SRC = "/assets/home/hero/win-flagship-global-v2.mp4";
+const HEVC_VIDEO_SRC = "/assets/home/hero/win-flagship-global-v2-hevc.mp4";
 
 export function FlagshipFilmSection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -58,27 +59,63 @@ export function FlagshipFilmSection() {
       return;
     }
 
-    void video.play().catch(() => {
-      // The poster remains visible if the browser blocks autoplay.
-    });
+    void video
+      .play()
+      .then(() => {
+        video.dataset.ready = "true";
+      })
+      .catch(() => {
+        // The poster remains visible if the browser blocks autoplay.
+      });
   }, [hasEnteredPlaybackRange, isWithinPlaybackRange, prefersReducedMotion]);
 
   const shouldLoadVideo = hasEnteredPlaybackRange && !prefersReducedMotion;
 
   return (
     <div ref={containerRef} className={styles.section} aria-hidden="true">
+      <ResponsivePicture
+        alt=""
+        className={styles.poster}
+        fill
+        fallback={{
+          height: 1080,
+          quality: 85,
+          sizes: "100vw",
+          src: "/assets/home/hero/win-flagship-global-v2-poster.jpg",
+          width: 1920,
+        }}
+        sources={[
+          {
+            height: 1080,
+            media: "(max-width: 767px)",
+            quality: 85,
+            sizes: "100vw",
+            src: "/assets/home/hero/win-flagship-global-v2-poster-mobile.jpg",
+            width: 864,
+          },
+        ]}
+      />
       <video
         ref={videoRef}
         className={styles.video}
         autoPlay={shouldLoadVideo}
+        height={1080}
         loop
         muted
+        onPlaying={(event) => {
+          event.currentTarget.dataset.ready = "true";
+        }}
         playsInline
-        poster={POSTER_SRC}
         preload={shouldLoadVideo ? "metadata" : "none"}
         tabIndex={-1}
+        width={1920}
       >
-        {shouldLoadVideo ? <source src={VIDEO_SRC} type="video/mp4" /> : null}
+        {shouldLoadVideo ? (
+          <>
+            <source src={HEVC_VIDEO_SRC} type='video/mp4; codecs="hvc1"' />
+            <source src={H264_VIDEO_SRC} type="video/mp4" />
+          </>
+        ) : null}
       </video>
     </div>
   );

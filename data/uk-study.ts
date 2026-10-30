@@ -125,14 +125,6 @@ export const popularSubjects = [
   },
 ] as const;
 
-export const applicationSteps = [
-  { timing: "Day 1", title: "Share your goals", description: "Tell us your grades, budget and ambitions—online, by phone or in person." },
-  { timing: "Week 1", title: "Get your shortlist", description: "Compare 3–5 courses and universities matched to your goals, budget and eligibility." },
-  { timing: "Weeks 2–6", title: "Submit strong applications", description: "We strengthen your personal statement, check every document and manage deadlines." },
-  { timing: "After your offer", title: "Secure your visa", description: "Get step-by-step visa guidance and document checks so nothing is missed." },
-  { timing: "Before departure", title: "Get ready to go", description: "Prepare with accommodation guidance, travel tips and a complete pre-departure briefing." },
-] as const;
-
 export const applicationDocuments = [
   ["Academic transcript", "Your official record of subjects studied and grades achieved."],
   ["Graduation certificate", "Proof that you have completed your current qualification."],

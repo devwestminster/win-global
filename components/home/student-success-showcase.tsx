@@ -7,27 +7,27 @@ const studentStories = [
   {
     name: "Maadh",
     university: "University of Surrey",
-    image: `${assetRoot}/maadh.png`,
+    image: `${assetRoot}/maadh.jpg`,
   },
   {
     name: "Kriti",
     university: "Newcastle University",
-    image: `${assetRoot}/kriti.png`,
+    image: `${assetRoot}/kriti.jpg`,
   },
   {
     name: "Masha",
     university: "UNSW Sydney",
-    image: `${assetRoot}/masha.png`,
+    image: `${assetRoot}/masha.jpg`,
   },
   {
     name: "Steve",
     university: "University Tasmania",
-    image: `${assetRoot}/steve.png`,
+    image: `${assetRoot}/steve.jpg`,
   },
   {
     name: "Lucas",
     university: "Manchester Metropolitan University",
-    image: `${assetRoot}/lucas.png`,
+    image: `${assetRoot}/lucas.jpg`,
   },
 ] as const;
 
@@ -39,8 +39,9 @@ function StoryCards({ duplicate = false }: { duplicate?: boolean }) {
           <Image
             src={story.image}
             alt={`${story.name}, ${story.university}`}
-            width={497}
-            height={493}
+            width={1491}
+            height={1476}
+            quality={90}
             sizes="(max-width: 767px) 84vw, (max-width: 1100px) 430px, 497px"
           />
         </li>

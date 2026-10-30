@@ -2,6 +2,7 @@
   position: sticky;
   z-index: 50;
   top: 0;
+  isolation: isolate;
   width: 100%;
   border-bottom: 1px solid transparent;
   background: #fff;
@@ -11,6 +12,28 @@
   transition: background-color 180ms ease, border-color 180ms ease,
     opacity 280ms cubic-bezier(0.16, 1, 0.3, 1),
     transform 320ms cubic-bezier(0.16, 1, 0.3, 1), visibility 0s linear;
+}
+
+.header::before {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 137px;
+  background: linear-gradient(
+    180deg,
+    rgb(0 0 0 / 50%) 0%,
+    rgb(102 102 102 / 0%) 100%
+  );
+  content: "";
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms ease;
+}
+
+.header[data-header-tone="light"]::before {
+  opacity: 1;
 }
 
 .headerScrolled {
@@ -69,6 +92,7 @@
   font-size: 0.875rem;
   font-weight: 500;
   line-height: 1.5;
+  transition: color 180ms ease, opacity 180ms ease;
   white-space: nowrap;
 }
 
@@ -108,7 +132,23 @@
   border-bottom: 2px solid currentColor;
   color: #171829;
   transform: translateY(-2px) rotate(45deg);
-  transition: transform 180ms ease;
+  transition: color 180ms ease, transform 180ms ease;
+}
+
+.header[data-header-tone="light"] .navLink,
+.header[data-header-tone="light"] .navGroup > button,
+.header[data-header-tone="light"] .navLink[aria-current="page"],
+.header[data-header-tone="light"] .navGroup > button[data-current="true"],
+.header[data-header-tone="light"] .chevron,
+.header[data-header-tone="light"] .mobileToggle {
+  color: #fff;
+}
+
+.header[data-header-tone="light"] .navLink:hover,
+.header[data-header-tone="light"] .navGroup > button:hover,
+.header[data-header-tone="light"] .navGroup > button[aria-expanded="true"] {
+  color: #fff;
+  opacity: 0.78;
 }
 
 button[aria-expanded="true"] > .chevron {
@@ -177,6 +217,10 @@ button[aria-expanded="true"] > .chevron {
 }
 
 @media (max-width: 1100px) {
+  .header::before {
+    height: 112px;
+  }
+
   .desktopNav,
   .desktopCta {
     display: none;
@@ -429,6 +473,7 @@ button[aria-expanded="true"] > .chevron {
 
 @media (prefers-reduced-motion: reduce) {
   .header,
+  .header::before,
   .chevron {
     transition: none;
   }

@@ -122,6 +122,7 @@ export function UniversityChoiceSection() {
                 src={image.src}
                 alt=""
                 fill
+                quality={85}
                 sizes="(max-width: 767px) 104px, (max-width: 1100px) 140px, 196px"
               />
               <span className={styles.mediaShade} />

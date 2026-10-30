@@ -1,7 +1,7 @@
 import { HeroSection } from "@/components/home/hero-section";
 import { FlagshipFilmSection } from "@/components/home/flagship-film-section";
 import { ImpactStatsSection } from "@/components/home/impact-stats-section";
-import { HowItWorksSection } from "@/components/home/how-it-works-section";
+import { HowItWorksSection } from "@/components/sections/how-it-works-section";
 import { StudentSuccessSection } from "@/components/home/student-success-section";
 import { StudyDestinationsSection } from "@/components/home/study-destinations-section";
 import { UniversityPartnersSection } from "@/components/home/university-partners-section";

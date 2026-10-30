@@ -17,21 +17,9 @@
   padding: 100px 120px;
 }
 
-.heroImage,
-.processBackground {
-  object-fit: cover;
-}
-
 .heroImage {
-  object-fit: fill;
+  object-fit: cover;
   object-position: center bottom;
-  transform: scale(1.03);
-}
-
-.heroFade {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(0deg, #fff 7.067%, rgb(255 255 255 / 0%) 61.467%);
 }
 
 .heroContent {
@@ -95,8 +83,7 @@
 .overviewInner,
 .sectionInner,
 .recommendedPanel,
-.subjectsInner,
-.processInner {
+.subjectsInner {
   width: min(100%, var(--content-max));
   margin-inline: auto;
 }
@@ -193,9 +180,7 @@
 .splitHeading h2 span,
 .subjects h2 span,
 .documents h2 span,
-.centeredTitle span,
-.processHeading h2 span,
-.processCta h3 span {
+.centeredTitle span {
   color: var(--color-brand-500);
 }
 
@@ -322,6 +307,7 @@
 }
 
 .partnerToggle {
+  position: relative;
   display: grid;
   width: 64px;
   height: 64px;
@@ -333,15 +319,19 @@
 }
 
 .partnerToggle img {
+  position: absolute;
+  top: 50%;
+  left: calc(50% - 8px);
   width: 106px;
   max-width: none;
   height: 106px;
-  transform: rotate(90deg);
+  transform: translate(-50%, -50%) rotate(90deg);
   transition: transform 180ms ease;
 }
 
 .partnerToggle img.partnerToggleExpanded {
-  transform: rotate(270deg);
+  left: calc(50% + 8px);
+  transform: translate(-50%, -50%) rotate(270deg);
 }
 
 .recommended {
@@ -587,171 +577,6 @@
   line-height: 1.5;
 }
 
-.process {
-  position: relative;
-  min-height: 2100px;
-  overflow: hidden;
-  padding: 100px var(--page-gutter);
-  background: #fafbfe;
-}
-
-.processBackground {
-  object-position: center;
-}
-
-.processFade {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    #fff 2%,
-    rgb(255 255 255 / 88%) 20%,
-    rgb(255 255 255 / 18%) 56%,
-    rgb(255 255 255 / 0%) 78%,
-    #fff 99%
-  );
-}
-
-.processInner {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 60px;
-}
-
-.processHeading {
-  display: flex;
-  width: min(100%, 620px);
-  flex-direction: column;
-  align-items: center;
-  gap: 24px;
-  text-align: center;
-}
-
-.processHeading h2 {
-  display: grid;
-  margin: 0;
-  color: var(--color-text-primary);
-  font-size: clamp(2.75rem, 3.75vw, 3.375rem);
-  line-height: 1.2;
-}
-
-.processHeading > p:last-child {
-  max-width: 420px;
-  margin: 0;
-  color: var(--color-text-secondary);
-  font-size: 1.5rem;
-  line-height: 1.5;
-}
-
-.steps {
-  display: grid;
-  width: min(100%, 574px);
-  gap: 32px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.steps li {
-  width: 454px;
-  padding: 24px;
-  border: 1px solid #e9edf3;
-  border-radius: 17px;
-  background: #fff;
-  box-shadow: 0 7px 12.5px rgb(29 35 80 / 4%);
-}
-
-.steps li:nth-child(even) {
-  justify-self: end;
-}
-
-.stepNumber {
-  display: grid;
-  width: 38px;
-  height: 38px;
-  place-items: center;
-  border-radius: 12px;
-  background: #1eb3e6;
-  color: #fff;
-  font-weight: 800;
-}
-
-.steps small {
-  display: block;
-  margin-top: 16px;
-  color: var(--color-brand-500);
-  font-size: 1.25rem;
-  font-weight: 800;
-}
-
-.steps h3 {
-  margin: 8px 0 0;
-  color: var(--color-text-primary);
-  font-size: 2.25rem;
-  line-height: 1.15;
-}
-
-.steps p {
-  margin: 10px 0 0;
-  color: var(--color-text-secondary);
-  font-size: 1.125rem;
-  line-height: 1.35;
-}
-
-.processCta {
-  display: grid;
-  justify-items: center;
-  gap: 32px;
-  text-align: center;
-}
-
-.processCta h3 {
-  display: grid;
-  margin: 0;
-  color: var(--color-text-primary);
-  font-size: 2.75rem;
-  line-height: 1.2;
-}
-
-.lineIcon,
-.whatsappIcon,
-.visaImage,
-.passportImage {
-  position: absolute;
-  z-index: 1;
-  height: auto;
-  pointer-events: none;
-}
-
-.lineIcon {
-  top: 360px;
-  left: -35px;
-  transform: rotate(-18deg);
-}
-
-.whatsappIcon {
-  top: 670px;
-  right: -30px;
-  transform: rotate(25deg);
-}
-
-.visaImage {
-  top: 900px;
-  left: -205px;
-  width: 480px;
-  transform: rotate(14deg);
-}
-
-.passportImage {
-  top: 1380px;
-  right: -110px;
-  width: 392px;
-  transform: rotate(-32deg);
-}
-
 .documents {
   padding: 60px var(--page-gutter);
   background: #fff;
@@ -912,8 +737,7 @@
 
   .overview,
   .trust,
-  .blog,
-  .process {
+  .blog {
     padding-block: 80px;
   }
 
@@ -955,24 +779,6 @@
 
   .subjectsInner {
     grid-template-columns: minmax(0, 0.8fr) minmax(430px, 1fr);
-  }
-
-  .process {
-    min-height: 1950px;
-  }
-
-  .steps h3 {
-    font-size: 2rem;
-  }
-
-  .lineIcon,
-  .whatsappIcon {
-    width: 150px;
-  }
-
-  .visaImage,
-  .passportImage {
-    width: 320px;
   }
 
   .blogGrid {
@@ -1060,33 +866,6 @@
     padding: 24px;
   }
 
-  .process {
-    min-height: auto;
-  }
-
-  .lineIcon,
-  .whatsappIcon,
-  .visaImage,
-  .passportImage {
-    opacity: 0.48;
-  }
-
-  .lineIcon {
-    left: -70px;
-  }
-
-  .whatsappIcon {
-    right: -70px;
-  }
-
-  .visaImage {
-    left: -250px;
-  }
-
-  .passportImage {
-    right: -180px;
-  }
-
   .documentsHeading h2 {
     line-height: 1.2;
   }
@@ -1119,7 +898,6 @@
   .overview,
   .trust,
   .blog,
-  .process,
   .documents {
     padding-block: 64px;
   }
@@ -1129,8 +907,7 @@
   .splitHeading h2,
   .subjects h2,
   .documents h2,
-  .centeredTitle,
-  .processHeading h2 {
+  .centeredTitle {
     font-size: clamp(2.25rem, 10vw, 3rem);
   }
 
@@ -1238,43 +1015,6 @@
   .subjectCard {
     padding: 20px;
     border-radius: 22px;
-  }
-
-  .processHeading > p:last-child {
-    font-size: 1rem;
-  }
-
-  .steps {
-    width: 100%;
-  }
-
-  .steps li,
-  .steps li:nth-child(even) {
-    width: 100%;
-    justify-self: stretch;
-  }
-
-  .steps small {
-    font-size: 0.875rem;
-  }
-
-  .steps h3 {
-    font-size: 1.75rem;
-  }
-
-  .steps p {
-    font-size: 1rem;
-  }
-
-  .processCta h3 {
-    font-size: 2rem;
-  }
-
-  .lineIcon,
-  .whatsappIcon,
-  .visaImage,
-  .passportImage {
-    display: none;
   }
 
   .documentsHeading h2 {

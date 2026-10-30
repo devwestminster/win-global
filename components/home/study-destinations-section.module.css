@@ -161,26 +161,30 @@
 }
 
 .cardImage {
+  z-index: 0;
   object-fit: cover;
 }
 
-.ukImage,
+.ukImage {
+  object-position: 60% center;
+}
+
 .australiaImage {
-  object-position: center bottom;
+  object-position: 62% center;
 }
 
 .usaImage {
-  object-position: center 68%;
+  object-position: 70% center;
 }
 
 .singaporeImage {
-  object-position: center 58%;
+  object-position: center;
 }
 
 .newZealandImage,
 .malaysiaImage,
 .canadaImage {
-  object-position: center 62%;
+  object-position: center;
 }
 
 .cardShade {
@@ -189,10 +193,11 @@
   inset: 0;
   background: linear-gradient(
     to bottom,
-    #fff 4.5%,
-    rgb(255 255 255 / 96%) 25%,
-    rgb(255 255 255 / 72%) 42%,
-    transparent 68%
+    #fff 0%,
+    rgb(255 255 255 / 96%) 20%,
+    rgb(255 255 255 / 80%) 38%,
+    rgb(255 255 255 / 32%) 56%,
+    transparent 72%
   );
   pointer-events: none;
 }
@@ -367,10 +372,11 @@
   .cardShade {
     background: linear-gradient(
       to bottom,
-      #fff 2%,
-      rgb(255 255 255 / 97%) 34%,
-      rgb(255 255 255 / 78%) 57%,
-      transparent 82%
+      #fff 0%,
+      rgb(255 255 255 / 96%) 24%,
+      rgb(255 255 255 / 78%) 42%,
+      rgb(255 255 255 / 30%) 60%,
+      transparent 76%
     );
   }
 
@@ -400,10 +406,11 @@
   .cardShade {
     background: linear-gradient(
       to bottom,
-      #fff 3%,
-      rgb(255 255 255 / 97%) 34%,
-      rgb(255 255 255 / 88%) 60%,
-      transparent 88%
+      #fff 0%,
+      rgb(255 255 255 / 96%) 22%,
+      rgb(255 255 255 / 80%) 42%,
+      rgb(255 255 255 / 34%) 62%,
+      transparent 80%
     );
   }
 }

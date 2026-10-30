@@ -1,14 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ActionLink } from "@/components/ui/action-link";
+import { HowItWorksSection } from "@/components/sections/how-it-works-section";
 import {
   applicationDocuments,
-  applicationSteps,
   popularSubjects,
   recommendedUniversities,
   trustReasons,
   ukBlogPosts,
 } from "@/data/uk-study";
+import { CountryHeroPicture } from "./country-hero-picture";
 import { UkPartnerLogos } from "./uk-partner-logos";
 import styles from "./uk-study-page.module.css";
 
@@ -18,16 +19,12 @@ export function UkStudyPage() {
   return (
     <main className={styles.page}>
       <section className={styles.hero} aria-labelledby="uk-page-title">
-        <Image
-          className={styles.heroImage}
-          src="/assets/study-abroad/uk/uk.png"
+        <CountryHeroPicture
           alt="Palace of Westminster and Big Ben in London"
-          fill
-          unoptimized
-          fetchPriority="high"
-          loading="eager"
+          className={styles.heroImage}
+          desktopSrc="/assets/study-abroad/uk/United Kingdom-bg.png"
+          mobileSrc="/assets/study-abroad/uk/hero-mobile.webp"
         />
-        <div className={styles.heroFade} aria-hidden="true" />
         <div className={styles.heroContent}>
           <div className={styles.heroHeading}>
             <p className={styles.eyebrow}>Study in</p>
@@ -238,50 +235,7 @@ export function UkStudyPage() {
         </div>
       </section>
 
-      <section className={styles.process} aria-labelledby="process-title">
-        <Image
-          className={styles.processBackground}
-          src="/assets/home/how-it-works/sky-clouds.jpg"
-          alt=""
-          fill
-          sizes="100vw"
-        />
-        <div className={styles.processFade} />
-        <Image className={styles.lineIcon} src="/assets/home/how-it-works/line-3d.png" alt="" width={200} height={200} />
-        <Image className={styles.whatsappIcon} src="/assets/home/how-it-works/whatsapp-3d.png" alt="" width={200} height={200} />
-        <Image className={styles.visaImage} src="/assets/home/how-it-works/visa-form.png" alt="" width={481} height={584} />
-        <Image className={styles.passportImage} src="/assets/home/how-it-works/passport-tickets.png" alt="" width={392} height={477} />
-
-        <div className={styles.processInner}>
-          <div className={styles.processHeading}>
-            <p className={styles.eyebrow}>How it works</p>
-            <h2 id="process-title">
-              Your study-<span>abroad plan, made simple.</span>
-            </h2>
-            <p>Five clear steps. One dedicated counsellor from your first question to departure.</p>
-          </div>
-
-          <ol className={styles.steps}>
-            {applicationSteps.map((step, index) => (
-              <li key={step.title}>
-                <span className={styles.stepNumber}>{index + 1}</span>
-                <small>{step.timing}</small>
-                <h3>{step.title}</h3>
-                <p>{step.description}</p>
-              </li>
-            ))}
-          </ol>
-
-          <div className={styles.processCta}>
-            <h3>
-              Your Study Abroad <span>Journey Starts Here</span>
-            </h3>
-            <ActionLink href={consultationHref} variant="secondary">
-              Book a free consultation
-            </ActionLink>
-          </div>
-        </div>
-      </section>
+      <HowItWorksSection />
 
       <section className={styles.documents} aria-labelledby="documents-title">
         <div className={styles.sectionInner}>

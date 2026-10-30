@@ -5,6 +5,23 @@
   overflow: visible;
 }
 
+.defaultLayer,
+.lightLayer {
+  transition: opacity 180ms ease;
+}
+
+.lightLayer {
+  opacity: 0;
+}
+
+:global([data-header-tone="light"]) .defaultLayer {
+  opacity: 0;
+}
+
+:global([data-header-tone="light"]) .lightLayer {
+  opacity: 1;
+}
+
 .drawW,
 .drawI,
 .drawN {
@@ -45,6 +62,11 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .defaultLayer,
+  .lightLayer {
+    transition: none;
+  }
+
   .drawW,
   .drawI,
   .drawN,
