@@ -1,0 +1,40 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/study-abroad/layout,_N_T_/study-abroad/usa/layout,_N_T_/study-abroad/usa/page,_N_T_/study-abroad/usa"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/_index",
+    "/study-abroad/usa/__PAGE__"
+  ],
+  "prefetchHints": {
+    "hints": 0,
+    "slots": {
+      "children": {
+        "hints": 64,
+        "slots": {
+          "children": {
+            "hints": 96,
+            "slots": {
+              "children": {
+                "hints": 160,
+                "slots": null
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "routeCache": {
+    "key": "/route-cache/APP_PAGE/8b65d353a0d46f1a45e537d029608c0eae5ec0632aed3d0b1bc5d0d844f0c9a1/$/study-abroad/usa",
+    "owner": {
+      "kind": "APP_PAGE",
+      "sourceRoute": "/study-abroad/usa/page"
+    },
+    "isFallback": false
+  }
+}

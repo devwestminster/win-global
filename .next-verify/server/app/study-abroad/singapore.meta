@@ -1,0 +1,40 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/study-abroad/layout,_N_T_/study-abroad/singapore/layout,_N_T_/study-abroad/singapore/page,_N_T_/study-abroad/singapore"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/_index",
+    "/study-abroad/singapore/__PAGE__"
+  ],
+  "prefetchHints": {
+    "hints": 0,
+    "slots": {
+      "children": {
+        "hints": 64,
+        "slots": {
+          "children": {
+            "hints": 96,
+            "slots": {
+              "children": {
+                "hints": 160,
+                "slots": null
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "routeCache": {
+    "key": "/route-cache/APP_PAGE/9d12fd91d80cfc25aea68e4f0ff896589a7444426659318ee0225f0e7a277357/$/study-abroad/singapore",
+    "owner": {
+      "kind": "APP_PAGE",
+      "sourceRoute": "/study-abroad/singapore/page"
+    },
+    "isFallback": false
+  }
+}

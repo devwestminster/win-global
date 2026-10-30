@@ -11,6 +11,7 @@ import {
 } from "@/data/uk-study";
 import { CountryHeroPicture } from "./country-hero-picture";
 import { CountryPartnerLogos } from "./country-partner-logos";
+import { imageLoadingProps } from "./image-loading";
 
 const consultationHref = "/contact";
 
@@ -31,7 +32,7 @@ export function CountryStudyPage({
           alt={config.heroAlt}
           className={styles.heroImage}
           desktopSrc={config.heroImage}
-          mobileSrc={config.heroMobileImage}
+          staticSrcSets={config.heroSources}
         />
         <div className={styles.heroContent}>
           <div className={styles.heroHeading}>
@@ -49,7 +50,8 @@ export function CountryStudyPage({
               src={config.overviewImages[0]}
               alt={`International students preparing to study in ${config.country}`}
               fill
-              sizes="(max-width: 900px) 100vw, 604px"
+              sizes="(max-width: 900px) calc(100vw - 48px), 604px"
+              {...imageLoadingProps}
             />
           </div>
 
@@ -68,7 +70,8 @@ export function CountryStudyPage({
               src={config.overviewImages[1]}
               alt={`${config.country} city and student life`}
               fill
-              sizes="(max-width: 900px) 100vw, 604px"
+              sizes="(max-width: 900px) calc(100vw - 48px), 604px"
+              {...imageLoadingProps}
             />
           </div>
 
@@ -82,7 +85,8 @@ export function CountryStudyPage({
               src={config.overviewImages[2]}
               alt={`International students in ${config.country}`}
               fill
-              sizes="(max-width: 900px) 100vw, 573px"
+              sizes="(max-width: 900px) calc(100vw - 48px), 573px"
+              {...imageLoadingProps}
             />
             <p>Local guidance, global opportunities and support at every step.</p>
           </div>
@@ -97,7 +101,8 @@ export function CountryStudyPage({
               src={config.overviewImages[3]}
               alt={`Students studying in ${config.country}`}
               fill
-              sizes="(max-width: 900px) 100vw, 604px"
+              sizes="(max-width: 900px) calc(100vw - 48px), 604px"
+              {...imageLoadingProps}
             />
             <p>Trusted university partnerships. More opportunities for every student.</p>
           </div>
@@ -107,7 +112,8 @@ export function CountryStudyPage({
               src={config.overviewImages[4]}
               alt={`${config.country} landmark`}
               fill
-              sizes="(max-width: 900px) 100vw, 573px"
+              sizes="(max-width: 900px) calc(100vw - 48px), 573px"
+              {...imageLoadingProps}
             />
           </div>
         </div>
@@ -152,7 +158,8 @@ export function CountryStudyPage({
                     src={university.image}
                     alt={`${university.name} campus`}
                     fill
-                    sizes="(max-width: 700px) 100vw, (max-width: 1024px) 50vw, 380px"
+                    sizes="(max-width: 700px) calc(100vw - 48px), (max-width: 1024px) calc(50vw - 36px), 380px"
+                    {...imageLoadingProps}
                   />
                   {university.logo ? (
                     <span className={styles.universityLogo}>
@@ -222,7 +229,13 @@ export function CountryStudyPage({
             {subjects.map((subject, index) => (
               <article className={styles.subjectCard} key={subject.title}>
                 <div className={styles.subjectImage}>
-                  <Image src={config.subjectImages[index]} alt="" fill sizes="(max-width: 900px) 100vw, 540px" />
+                  <Image
+                    src={config.subjectImages[index]}
+                    alt=""
+                    fill
+                    sizes="(max-width: 900px) calc(100vw - 48px), 540px"
+                    {...imageLoadingProps}
+                  />
                 </div>
                 <h3>{subject.title}</h3>
                 <p>{subject.description}</p>
@@ -287,7 +300,8 @@ export function CountryStudyPage({
                     src={config.blogImage}
                     alt={`Students preparing to study in ${config.country} with WIN Education`}
                     fill
-                    sizes="(max-width: 700px) 100vw, (max-width: 1024px) 50vw, 392px"
+                    sizes="(max-width: 700px) calc(100vw - 48px), (max-width: 1024px) calc(50vw - 36px), 392px"
+                    {...imageLoadingProps}
                   />
                 </div>
                 <div className={styles.blogCopy}>

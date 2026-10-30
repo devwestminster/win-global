@@ -1,0 +1,10 @@
+:HL["/_next/static/chunks/1xssxlll081tm.css","style"]
+:HL["/_next/static/chunks/3uuevxvk-nr0a.css","style"]
+:HL["/_next/static/chunks/298gj1zbrxl9a.css","style"]
+:HL["/_next/static/chunks/0ugovwv1knve-.css","style"]
+:HL["/_next/static/chunks/2_b-yrqz9bmax.css","style"]
+:HL["/_next/static/media/dm_sans_latin-s.p.2_mbdogr7ni8i.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/chunks/0-0_5ybrbqva1.css","style"]
+2:[["children",{"s":"__PAGE__","h":160}]]
+1:[["children",{"s":"scholarships","h":64,"c":"$Q2"}]]
+0:{"b":"E9j_F4uFqCKckpB5LpRuA","t":{"t":{"s":"","h":16,"c":"$Q1"}}}

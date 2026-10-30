@@ -5,7 +5,10 @@ export type CountryStudyConfig = {
   country: string;
   shortName: string;
   heroImage: string;
-  heroMobileImage: string;
+  heroSources: {
+    desktop: readonly { src: string; width: number }[];
+    mobile: readonly { src: string; width: number }[];
+  };
   heroAlt: string;
   heroDescription: string;
   overviewTitle: string;
@@ -49,6 +52,23 @@ export const sharedCountrySubjects = subjectNames.map((title, index) => ({
 
 function asset(slug: CountryStudyConfig["slug"], file: string) {
   return `/assets/study-abroad/${slug}/${file}`;
+}
+
+function heroSources(
+  slug: CountryStudyConfig["slug"],
+  desktopWidths: readonly number[] = [1440, 1920, 2880, 3840],
+  mobileWidths: readonly number[] = [480, 780, 1170, 1440, 1900],
+) {
+  return {
+    desktop: desktopWidths.map((width) => ({
+      src: asset(slug, `hero-desktop-${width}.webp`),
+      width,
+    })),
+    mobile: mobileWidths.map((width) => ({
+      src: asset(slug, `hero-mobile-${width}.webp`),
+      width,
+    })),
+  };
 }
 
 function recommended(
@@ -173,8 +193,8 @@ export const countryStudyConfigs: Record<CountryStudyConfig["slug"], CountryStud
     slug: "australia",
     country: "Australia",
     shortName: "Australia",
-    heroImage: "/assets/study-abroad/australia/Australia-bg.png",
-    heroMobileImage: "/assets/study-abroad/australia/hero-mobile.webp",
+    heroImage: asset("australia", "hero-desktop-3840.webp"),
+    heroSources: heroSources("australia"),
     heroAlt: "Sydney Opera House and Sydney Harbour",
     heroDescription:
       "Discover world-class universities and welcoming student cities. We’ll help you compare courses, costs, entry requirements and scholarships.",
@@ -201,8 +221,8 @@ export const countryStudyConfigs: Record<CountryStudyConfig["slug"], CountryStud
     slug: "usa",
     country: "United States of America",
     shortName: "USA",
-    heroImage: "/assets/study-abroad/usa/United States of America-bg.png",
-    heroMobileImage: "/assets/study-abroad/usa/hero-mobile.webp",
+    heroImage: asset("usa", "hero-desktop-3840.webp"),
+    heroSources: heroSources("usa"),
     heroAlt: "New York City skyline",
     heroDescription:
       "Explore flexible study pathways across leading US institutions, matched to your goals, eligibility and budget.",
@@ -229,8 +249,8 @@ export const countryStudyConfigs: Record<CountryStudyConfig["slug"], CountryStud
     slug: "new-zealand",
     country: "New Zealand",
     shortName: "New Zealand",
-    heroImage: "/assets/study-abroad/new-zealand/New Zealand-bg.png",
-    heroMobileImage: "/assets/study-abroad/new-zealand/hero-mobile.webp",
+    heroImage: asset("new-zealand", "hero-desktop-3840.webp"),
+    heroSources: heroSources("new-zealand"),
     heroAlt: "Auckland skyline and harbour",
     heroDescription:
       "Discover globally recognised education, practical learning and a supportive student experience in New Zealand.",
@@ -257,8 +277,8 @@ export const countryStudyConfigs: Record<CountryStudyConfig["slug"], CountryStud
     slug: "singapore",
     country: "Singapore",
     shortName: "Singapore",
-    heroImage: "/assets/study-abroad/singapore/Singapore-bg.png",
-    heroMobileImage: "/assets/study-abroad/singapore/hero-mobile.webp",
+    heroImage: asset("singapore", "hero-desktop-3840.webp"),
+    heroSources: heroSources("singapore"),
     heroAlt: "Singapore skyline and Marina Bay",
     heroDescription:
       "Study in a global education and business hub with respected degrees and strong international career connections.",
@@ -285,8 +305,8 @@ export const countryStudyConfigs: Record<CountryStudyConfig["slug"], CountryStud
     slug: "malaysia",
     country: "Malaysia",
     shortName: "Malaysia",
-    heroImage: "/assets/study-abroad/malaysia/Malaysia-bg.png",
-    heroMobileImage: "/assets/study-abroad/malaysia/hero-mobile.webp",
+    heroImage: asset("malaysia", "hero-desktop-3840.webp"),
+    heroSources: heroSources("malaysia"),
     heroAlt: "Kuala Lumpur skyline and Petronas Towers",
     heroDescription:
       "Access international degrees at competitive costs in a welcoming, multicultural study destination.",
@@ -313,8 +333,8 @@ export const countryStudyConfigs: Record<CountryStudyConfig["slug"], CountryStud
     slug: "canada",
     country: "Canada",
     shortName: "Canada",
-    heroImage: asset("canada", "Canada-bg.png"),
-    heroMobileImage: asset("canada", "hero-mobile.webp"),
+    heroImage: asset("canada", "hero-desktop-1536.webp"),
+    heroSources: heroSources("canada", [768, 1200, 1536], [480, 780, 950]),
     heroAlt: "Canadian flag, Rocky Mountains and Toronto skyline",
     heroDescription:
       "Study in a global education and business hub with respected degrees and strong international career connections.",

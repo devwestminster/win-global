@@ -1,54 +1,49 @@
-import { getImageProps } from "next/image";
-
 const desktopDimensions = { width: 5760, height: 3000 };
-const mobileDimensions = { width: 1900, height: 3000 };
 
 type CountryHeroPictureProps = {
   alt: string;
   className: string;
   desktopSrc: string;
-  mobileSrc: string;
+  staticSrcSets: {
+    desktop: readonly { src: string; width: number }[];
+    mobile: readonly { src: string; width: number }[];
+  };
 };
+
+function createSrcSet(sources: readonly { src: string; width: number }[]) {
+  return sources.map(({ src, width }) => `${src} ${width}w`).join(", ");
+}
 
 export function CountryHeroPicture({
   alt,
   className,
   desktopSrc,
-  mobileSrc,
+  staticSrcSets,
 }: CountryHeroPictureProps) {
-  const {
-    props: { srcSet: desktopSrcSet },
-  } = getImageProps({
-    ...desktopDimensions,
-    alt,
-    fetchPriority: "high",
-    quality: 85,
-    sizes: "100vw",
-    src: desktopSrc,
-  });
-
-  const {
-    props: { srcSet: mobileSrcSet, ...mobileImageProps },
-  } = getImageProps({
-    ...mobileDimensions,
-    alt,
-    decoding: "async",
-    fetchPriority: "high",
-    loading: "eager",
-    quality: 90,
-    sizes: "100vw",
-    src: mobileSrc,
-  });
-
   return (
     <picture>
-      <source media="(max-width: 700px)" srcSet={mobileSrcSet} />
-      <source media="(min-width: 701px)" srcSet={desktopSrcSet} />
+      <source
+        media="(max-width: 700px)"
+        sizes="100vw"
+        srcSet={createSrcSet(staticSrcSets.mobile)}
+        type="image/webp"
+      />
+      <source
+        media="(min-width: 701px)"
+        sizes="100vw"
+        srcSet={createSrcSet(staticSrcSets.desktop)}
+        type="image/webp"
+      />
       <img
-        {...mobileImageProps}
         alt={alt}
         className={className}
+        decoding="async"
+        fetchPriority="high"
+        height={desktopDimensions.height}
+        loading="eager"
+        src={desktopSrc}
         style={{ height: "100%", inset: 0, position: "absolute", width: "100%" }}
+        width={desktopDimensions.width}
       />
     </picture>
   );

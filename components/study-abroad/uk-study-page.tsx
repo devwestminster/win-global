@@ -10,10 +10,14 @@ import {
   ukBlogPosts,
 } from "@/data/uk-study";
 import { CountryHeroPicture } from "./country-hero-picture";
+import { imageLoadingProps } from "./image-loading";
 import { UkPartnerLogos } from "./uk-partner-logos";
 import styles from "./uk-study-page.module.css";
 
 const consultationHref = "/contact";
+const ukHeroPath = "/assets/study-abroad/uk";
+const ukDesktopHeroWidths = [1440, 1920, 2880, 3840] as const;
+const ukMobileHeroWidths = [480, 780, 1170, 1440, 1900] as const;
 
 export function UkStudyPage() {
   return (
@@ -22,8 +26,17 @@ export function UkStudyPage() {
         <CountryHeroPicture
           alt="Palace of Westminster and Big Ben in London"
           className={styles.heroImage}
-          desktopSrc="/assets/study-abroad/uk/United Kingdom-bg.png"
-          mobileSrc="/assets/study-abroad/uk/hero-mobile.webp"
+          desktopSrc="/assets/study-abroad/uk/hero-desktop-3840.webp"
+          staticSrcSets={{
+            desktop: ukDesktopHeroWidths.map((width) => ({
+              src: `${ukHeroPath}/hero-desktop-${width}.webp`,
+              width,
+            })),
+            mobile: ukMobileHeroWidths.map((width) => ({
+              src: `${ukHeroPath}/hero-mobile-${width}.webp`,
+              width,
+            })),
+          }}
         />
         <div className={styles.heroContent}>
           <div className={styles.heroHeading}>
@@ -44,7 +57,8 @@ export function UkStudyPage() {
               src="/assets/study-abroad/uk/overview-consultation.jpg"
               alt="Student speaking with an education counsellor"
               fill
-              sizes="(max-width: 900px) 100vw, 604px"
+              sizes="(max-width: 900px) calc(100vw - 48px), 604px"
+              {...imageLoadingProps}
             />
           </div>
 
@@ -69,10 +83,11 @@ export function UkStudyPage() {
 
           <div className={`${styles.photoCard} ${styles.bridgePhoto}`}>
             <Image
-              src="/assets/study-abroad/uk/tower-bridge.png"
+              src="/assets/study-abroad/uk/tower-bridge.webp"
               alt="Tower Bridge in London"
               fill
-              sizes="(max-width: 900px) 100vw, 604px"
+              sizes="(max-width: 900px) calc(100vw - 48px), 604px"
+              {...imageLoadingProps}
             />
           </div>
 
@@ -86,7 +101,8 @@ export function UkStudyPage() {
               src="/assets/study-abroad/uk/students.jpg"
               alt="University students walking together"
               fill
-              sizes="(max-width: 900px) 100vw, 573px"
+              sizes="(max-width: 900px) calc(100vw - 48px), 573px"
+              {...imageLoadingProps}
             />
             <p>Local guidance, global opportunities and support at every step.</p>
           </div>
@@ -101,7 +117,8 @@ export function UkStudyPage() {
               src="/assets/study-abroad/uk/telephone.jpg"
               alt="British telephone box, umbrella and Big Ben"
               fill
-              sizes="(max-width: 900px) 100vw, 604px"
+              sizes="(max-width: 900px) calc(100vw - 48px), 604px"
+              {...imageLoadingProps}
             />
             <p>Trusted university partnerships. More opportunities for every student.</p>
           </div>
@@ -111,7 +128,8 @@ export function UkStudyPage() {
               src="/assets/study-abroad/uk/westminster-abbey.jpg"
               alt="Westminster Abbey"
               fill
-              sizes="(max-width: 900px) 100vw, 573px"
+              sizes="(max-width: 900px) calc(100vw - 48px), 573px"
+              {...imageLoadingProps}
             />
           </div>
         </div>
@@ -146,7 +164,8 @@ export function UkStudyPage() {
                     src={university.image}
                     alt={`${university.name} campus`}
                     fill
-                    sizes="(max-width: 700px) 100vw, (max-width: 1024px) 50vw, 380px"
+                    sizes="(max-width: 700px) calc(100vw - 48px), (max-width: 1024px) calc(50vw - 36px), 380px"
+                    {...imageLoadingProps}
                   />
                   <span className={styles.universityLogo}>
                     <Image
@@ -224,7 +243,8 @@ export function UkStudyPage() {
                     src={subject.image}
                     alt=""
                     fill
-                    sizes="(max-width: 900px) 100vw, 540px"
+                    sizes="(max-width: 900px) calc(100vw - 48px), 540px"
+                    {...imageLoadingProps}
                   />
                 </div>
                 <h3>{subject.title}</h3>
@@ -290,7 +310,8 @@ export function UkStudyPage() {
                     src="/assets/study-abroad/uk/blog-study-uk.jpg"
                     alt="Students preparing to study in the UK with WIN Education"
                     fill
-                    sizes="(max-width: 700px) 100vw, (max-width: 1024px) 50vw, 392px"
+                    sizes="(max-width: 700px) calc(100vw - 48px), (max-width: 1024px) calc(50vw - 36px), 392px"
+                    {...imageLoadingProps}
                   />
                 </div>
                 <div className={styles.blogCopy}>

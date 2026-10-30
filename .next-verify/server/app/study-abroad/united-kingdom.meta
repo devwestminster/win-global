@@ -1,0 +1,40 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/study-abroad/layout,_N_T_/study-abroad/united-kingdom/layout,_N_T_/study-abroad/united-kingdom/page,_N_T_/study-abroad/united-kingdom"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/_index",
+    "/study-abroad/united-kingdom/__PAGE__"
+  ],
+  "prefetchHints": {
+    "hints": 0,
+    "slots": {
+      "children": {
+        "hints": 64,
+        "slots": {
+          "children": {
+            "hints": 96,
+            "slots": {
+              "children": {
+                "hints": 160,
+                "slots": null
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "routeCache": {
+    "key": "/route-cache/APP_PAGE/9dbe9664a5190b69052aa1c6d8f4b16ebc8eaba4f288002ebdc4f1df807b8f39/$/study-abroad/united-kingdom",
+    "owner": {
+      "kind": "APP_PAGE",
+      "sourceRoute": "/study-abroad/united-kingdom/page"
+    },
+    "isFallback": false
+  }
+}

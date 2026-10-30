@@ -1,0 +1,19 @@
+{
+  "/_global-error/page": "app/_global-error/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/blog/page": "app/blog/page.js",
+  "/contact/page": "app/contact/page.js",
+  "/how-we-help/[service]/page": "app/how-we-help/[service]/page.js",
+  "/how-we-help/page": "app/how-we-help/page.js",
+  "/our-offices/page": "app/our-offices/page.js",
+  "/page": "app/page.js",
+  "/scholarships/page": "app/scholarships/page.js",
+  "/study-abroad/australia/page": "app/study-abroad/australia/page.js",
+  "/study-abroad/canada/page": "app/study-abroad/canada/page.js",
+  "/study-abroad/malaysia/page": "app/study-abroad/malaysia/page.js",
+  "/study-abroad/new-zealand/page": "app/study-abroad/new-zealand/page.js",
+  "/study-abroad/page": "app/study-abroad/page.js",
+  "/study-abroad/singapore/page": "app/study-abroad/singapore/page.js",
+  "/study-abroad/united-kingdom/page": "app/study-abroad/united-kingdom/page.js",
+  "/study-abroad/usa/page": "app/study-abroad/usa/page.js"
+}

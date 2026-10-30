@@ -1,0 +1,35 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/our-offices/layout,_N_T_/our-offices/page,_N_T_/our-offices"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/_index",
+    "/our-offices/__PAGE__"
+  ],
+  "prefetchHints": {
+    "hints": 0,
+    "slots": {
+      "children": {
+        "hints": 64,
+        "slots": {
+          "children": {
+            "hints": 160,
+            "slots": null
+          }
+        }
+      }
+    }
+  },
+  "routeCache": {
+    "key": "/route-cache/APP_PAGE/0a4512afa17b5dc398912bcf6067977fdab107683b97afb3dcee50dc8e8cab04/$/our-offices",
+    "owner": {
+      "kind": "APP_PAGE",
+      "sourceRoute": "/our-offices/page"
+    },
+    "isFallback": false
+  }
+}

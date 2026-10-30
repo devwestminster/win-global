@@ -1,0 +1,40 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/study-abroad/layout,_N_T_/study-abroad/australia/layout,_N_T_/study-abroad/australia/page,_N_T_/study-abroad/australia"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/_index",
+    "/study-abroad/australia/__PAGE__"
+  ],
+  "prefetchHints": {
+    "hints": 0,
+    "slots": {
+      "children": {
+        "hints": 64,
+        "slots": {
+          "children": {
+            "hints": 96,
+            "slots": {
+              "children": {
+                "hints": 160,
+                "slots": null
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "routeCache": {
+    "key": "/route-cache/APP_PAGE/af52eb2e465c800fc1515486ffd861aab7f53aa6edfe18b51fb31790bf1699d5/$/study-abroad/australia",
+    "owner": {
+      "kind": "APP_PAGE",
+      "sourceRoute": "/study-abroad/australia/page"
+    },
+    "isFallback": false
+  }
+}

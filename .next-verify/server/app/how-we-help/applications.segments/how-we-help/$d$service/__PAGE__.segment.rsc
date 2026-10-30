@@ -1,0 +1,30 @@
+2:"$Sreact.fragment"
+3:"/_next/static/chunks/1jk735n9uqopi.js"
+4:"/_next/static/chunks/0cuvd_ixpebxp.js"
+5:I[39756,["$3","$4"],"default"]
+6:I[37457,["$3","$4"],"default"]
+d:I[22016,["$3","$4"],""]
+e:I[97367,["$3","$4"],"OutletBoundary"]
+f:"$Sreact.suspense"
+12:"ViewportBoundary"
+13:I[97367,["$3","$4"],"$12"]
+14:"MetadataBoundary"
+15:I[97367,["$3","$4"],"$14"]
+16:I[27201,["$3","$4"],"IconMark"]
+:HL["/_next/static/chunks/0-0_5ybrbqva1.css","style"]
+8:X
+8:C
+9:X
+c:[["children",{"s":"__PAGE__","h":160,"d":{"r":["$","$2","c",{"children":[["$","main",null,{"className":"xxIbUG_page","children":["$","section",null,{"className":"xxIbUG_hero","aria-labelledby":"page-title","children":["$","div",null,{"className":"xxIbUG_inner","children":[["$","p",null,{"className":"xxIbUG_eyebrow","children":"Application Support"}],["$","h1",null,{"className":"xxIbUG_title","id":"page-title","children":"Submit a clear, complete and confident application."}],["$","p",null,{"className":"xxIbUG_description","children":"We help you organise requirements, documents and timelines so every application moves forward smoothly."}],["$","div",null,{"className":"xxIbUG_actions","children":[["$","$Ld",null,{"className":"_3w-WHG_action _3w-WHG_primary","href":"/contact","children":"Book a free consultation"}],["$","$Ld",null,{"className":"_3w-WHG_action _3w-WHG_secondary","href":"/","children":"Back to home"}]]}]]}]}]}],[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0-0_5ybrbqva1.css","precedence":"next"}]],["$","$Le",null,{"children":["$","$f",null,{"name":"Next.MetadataOutlet","children":"$@10"}]}]]}],"p":"$@11","v":null,"s":"$9"}}]]
+a:[["children",{"s":{"n":"service","t":"d","k":"applications","s":[]},"h":96,"d":{"r":["$","$2","c",{"children":[null,["$","$L5",null,{"parallelRouterKey":"children","template":["$","$L6",null,{}]}]]}],"p":"$@b","v":"$8","s":"$9"},"c":"$Qc"}]]
+1:[["children",{"s":"how-we-help","h":64,"d":{"r":["$","$2","c",{"children":[null,["$","$L5",null,{"parallelRouterKey":"children","template":["$","$L6",null,{}]}]]}],"p":"$@7","v":"$8","s":"$9"},"c":"$Qa"}]]
+0:{"t":{"t":{"s":"","h":16,"c":"$Q1"},"h":{"r":["$","$2","h",{"children":[null,["$","$L13",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","$L15",null,{"children":[["$","div",null,{"hidden":true,"children":["$","$f",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Application Support | WIN Education"}],["$","meta","1",{"name":"description","content":"We help you organise requirements, documents and timelines so every application moves forward smoothly."}],["$","meta","2",{"property":"og:title","content":"WIN Education | Study Abroad with a Plan That Fits You"}],["$","meta","3",{"property":"og:description","content":"One-to-one guidance for studying abroad, from choosing a course to applications, visas, and departure."}],["$","meta","4",{"property":"og:site_name","content":"WIN Education"}],["$","meta","5",{"property":"og:locale","content":"en_US"}],["$","meta","6",{"property":"og:type","content":"website"}],["$","meta","7",{"name":"twitter:card","content":"summary"}],["$","meta","8",{"name":"twitter:title","content":"WIN Education | Study Abroad with a Plan That Fits You"}],["$","meta","9",{"name":"twitter:description","content":"One-to-one guidance for studying abroad, from choosing a course to applications, visas, and departure."}],["$","link","10",{"rel":"icon","href":"/assets/icons/faviocn.svg","type":"image/svg+xml"}],["$","$L16","11",{}]]}]}],null]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],"p":"$@17","v":null,"s":"$9"}},"a":"$@18","u":"$@19","b":"E9j_F4uFqCKckpB5LpRuA"}
+10:null
+19:true
+9:300
+9:C
+18:0
+b:"$undefined"
+7:"$undefined"
+17:"$undefined"
+11:"$undefined"

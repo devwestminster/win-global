@@ -15,6 +15,7 @@
   overflow: hidden;
   margin-top: -67px;
   padding: 100px 120px;
+  background: #dbe8ef;
 }
 
 .hero::after {

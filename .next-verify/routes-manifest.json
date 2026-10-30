@@ -1,0 +1,150 @@
+{
+  "version": 3,
+  "pages404": true,
+  "appType": "app",
+  "caseSensitive": false,
+  "basePath": "",
+  "redirects": [
+    {
+      "source": "/:path+/",
+      "destination": "/:path+",
+      "internal": true,
+      "priority": true,
+      "statusCode": 308,
+      "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$"
+    }
+  ],
+  "headers": [],
+  "onMatchHeaders": [],
+  "rewrites": {
+    "beforeFiles": [],
+    "afterFiles": [],
+    "fallback": []
+  },
+  "dynamicRoutes": [
+    {
+      "page": "/how-we-help/[service]",
+      "regex": "^/how\\-we\\-help/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPservice": "nxtPservice"
+      },
+      "namedRegex": "^/how\\-we\\-help/(?<nxtPservice>[^/]+?)(?:/)?$"
+    }
+  ],
+  "staticRoutes": [
+    {
+      "page": "/",
+      "regex": "^/(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/(?:/)?$"
+    },
+    {
+      "page": "/_global-error",
+      "regex": "^/_global\\-error(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_global\\-error(?:/)?$"
+    },
+    {
+      "page": "/_not-found",
+      "regex": "^/_not\\-found(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_not\\-found(?:/)?$"
+    },
+    {
+      "page": "/blog",
+      "regex": "^/blog(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/blog(?:/)?$"
+    },
+    {
+      "page": "/contact",
+      "regex": "^/contact(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/contact(?:/)?$"
+    },
+    {
+      "page": "/how-we-help",
+      "regex": "^/how\\-we\\-help(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/how\\-we\\-help(?:/)?$"
+    },
+    {
+      "page": "/our-offices",
+      "regex": "^/our\\-offices(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/our\\-offices(?:/)?$"
+    },
+    {
+      "page": "/scholarships",
+      "regex": "^/scholarships(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/scholarships(?:/)?$"
+    },
+    {
+      "page": "/study-abroad",
+      "regex": "^/study\\-abroad(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/study\\-abroad(?:/)?$"
+    },
+    {
+      "page": "/study-abroad/australia",
+      "regex": "^/study\\-abroad/australia(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/study\\-abroad/australia(?:/)?$"
+    },
+    {
+      "page": "/study-abroad/canada",
+      "regex": "^/study\\-abroad/canada(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/study\\-abroad/canada(?:/)?$"
+    },
+    {
+      "page": "/study-abroad/malaysia",
+      "regex": "^/study\\-abroad/malaysia(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/study\\-abroad/malaysia(?:/)?$"
+    },
+    {
+      "page": "/study-abroad/new-zealand",
+      "regex": "^/study\\-abroad/new\\-zealand(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/study\\-abroad/new\\-zealand(?:/)?$"
+    },
+    {
+      "page": "/study-abroad/singapore",
+      "regex": "^/study\\-abroad/singapore(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/study\\-abroad/singapore(?:/)?$"
+    },
+    {
+      "page": "/study-abroad/united-kingdom",
+      "regex": "^/study\\-abroad/united\\-kingdom(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/study\\-abroad/united\\-kingdom(?:/)?$"
+    },
+    {
+      "page": "/study-abroad/usa",
+      "regex": "^/study\\-abroad/usa(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/study\\-abroad/usa(?:/)?$"
+    }
+  ],
+  "dataRoutes": [],
+  "rsc": {
+    "header": "rsc",
+    "varyHeader": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+    "prefetchHeader": "next-router-prefetch",
+    "didPostponeHeader": "x-nextjs-postponed",
+    "contentTypeHeader": "text/x-component",
+    "suffix": ".rsc",
+    "prefetchSegmentHeader": "next-router-segment-prefetch",
+    "prefetchSegmentSuffix": ".segment.rsc",
+    "prefetchSegmentDirSuffix": ".segments",
+    "clientParamParsing": false,
+    "dynamicRSCPrerender": false
+  },
+  "rewriteHeaders": {
+    "pathHeader": "x-nextjs-rewritten-path",
+    "queryHeader": "x-nextjs-rewritten-query"
+  }
+}

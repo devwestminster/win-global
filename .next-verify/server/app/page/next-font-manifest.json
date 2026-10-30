@@ -1,0 +1,11 @@
+{
+  "pages": {},
+  "app": {
+    "[project]/app/page": [
+      "static/media/dm_sans_latin-s.p.2_mbdogr7ni8i.woff2",
+      "static/media/caveat_latin_500-s.p.2oynjr4i06dor.woff2"
+    ]
+  },
+  "appUsingSizeAdjust": true,
+  "pagesUsingSizeAdjust": false
+}

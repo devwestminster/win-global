@@ -1,0 +1,35 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/how-we-help/layout,_N_T_/how-we-help/page,_N_T_/how-we-help"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/_index",
+    "/how-we-help/__PAGE__"
+  ],
+  "prefetchHints": {
+    "hints": 0,
+    "slots": {
+      "children": {
+        "hints": 64,
+        "slots": {
+          "children": {
+            "hints": 160,
+            "slots": null
+          }
+        }
+      }
+    }
+  },
+  "routeCache": {
+    "key": "/route-cache/APP_PAGE/5d612faf24ba846d3a1bc50145eecebe7e04ffa8ba89f53cdd0403de2eb25d17/$/how-we-help",
+    "owner": {
+      "kind": "APP_PAGE",
+      "sourceRoute": "/how-we-help/page"
+    },
+    "isFallback": false
+  }
+}

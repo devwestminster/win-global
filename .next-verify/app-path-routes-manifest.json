@@ -1,0 +1,19 @@
+{
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/blog/page": "/blog",
+  "/contact/page": "/contact",
+  "/how-we-help/[service]/page": "/how-we-help/[service]",
+  "/how-we-help/page": "/how-we-help",
+  "/our-offices/page": "/our-offices",
+  "/page": "/",
+  "/scholarships/page": "/scholarships",
+  "/study-abroad/australia/page": "/study-abroad/australia",
+  "/study-abroad/canada/page": "/study-abroad/canada",
+  "/study-abroad/malaysia/page": "/study-abroad/malaysia",
+  "/study-abroad/new-zealand/page": "/study-abroad/new-zealand",
+  "/study-abroad/page": "/study-abroad",
+  "/study-abroad/singapore/page": "/study-abroad/singapore",
+  "/study-abroad/united-kingdom/page": "/study-abroad/united-kingdom",
+  "/study-abroad/usa/page": "/study-abroad/usa"
+}

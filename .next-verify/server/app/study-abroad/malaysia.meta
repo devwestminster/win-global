@@ -1,0 +1,40 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/study-abroad/layout,_N_T_/study-abroad/malaysia/layout,_N_T_/study-abroad/malaysia/page,_N_T_/study-abroad/malaysia"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/_index",
+    "/study-abroad/malaysia/__PAGE__"
+  ],
+  "prefetchHints": {
+    "hints": 0,
+    "slots": {
+      "children": {
+        "hints": 64,
+        "slots": {
+          "children": {
+            "hints": 96,
+            "slots": {
+              "children": {
+                "hints": 160,
+                "slots": null
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "routeCache": {
+    "key": "/route-cache/APP_PAGE/22ea1ae81541077ab920aafe13efd38169571994a2f434ff5fed452e285d493c/$/study-abroad/malaysia",
+    "owner": {
+      "kind": "APP_PAGE",
+      "sourceRoute": "/study-abroad/malaysia/page"
+    },
+    "isFallback": false
+  }
+}
